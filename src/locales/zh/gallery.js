@@ -40,6 +40,11 @@ export default {
       image: new URL('../../assets/gallery/2025-11-02.jpg', import.meta.url).href,
       title: '六角恐龙',
       description: '我可爱的六角恐龙在家，成都，2025年11月',
+    },
+    {
+      image: new URL('../../assets/gallery/2025-12-01.jpg', import.meta.url).href,
+      title: '水杉',
+      description: '电子科技大学的水杉树，成都，2025年12月',
     }
   ]
 }

@@ -40,6 +40,11 @@ export default {
       image: new URL('../../assets/gallery/2025-11-02.jpg', import.meta.url).href,
       title: 'Axolotl',
       description: 'My lovely axolotl at home, Chengdu, Nov. 2025',
+    },
+    {
+      image: new URL('../../assets/gallery/2025-12-01.jpg', import.meta.url).href,
+      title: 'Metasequoia',
+      description: 'The Metasequoia tree in UESTC, Chengdu, Dec. 2025',
     }
   ]
 }
