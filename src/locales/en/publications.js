@@ -36,7 +36,7 @@ export default {
       description: 'Universal framework for multiple VLA architectures, achieving <span class="highlight-red">+8%~41%</span> improvement without training',
       tags: ['Robotics', 'Vision-Language-Action Models', 'Test-Time'],
       links: {
-        project: 'https://koorye.github.io/proj/PCD',
+        project: 'https://koorye.github.io/PCD',
         arxiv: 'https://arxiv.org/abs/2505.13255',
         pdf: 'https://arxiv.org/pdf/2505.13255',
         code: 'https://github.com/Koorye/PCD/'
@@ -55,7 +55,7 @@ export default {
       description: 'Reducing spurious correlations in VLAs, boosting performance on <span class="highlight-red">seen (+6.2%)</span> and <span class="highlight-red">unseen (+10%)</span> tasks',
       tags: ['Robotics', 'Vision-Language-Action Models', 'Spatial Reasoning'],
       links: {
-        project: 'https://koorye.github.io/proj/Inspire',
+        project: 'https://koorye.github.io/Inspire',
         arxiv: 'https://arxiv.org/abs/2412.11509',
         pdf: 'https://arxiv.org/pdf/2412.11509',
         code: 'https://github.com/Koorye/Inspire/'

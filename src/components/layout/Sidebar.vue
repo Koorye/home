@@ -40,14 +40,6 @@
           <img src="../../assets/icons/dblp.svg" alt="DBLP" class="contact-icon" />
           <span class="contact-text">{{ t('sections.contact.dblp') }}</span>
         </a>
-        <a href="https://dblp.org/pid/132/9517-1" target="_blank" class="contact-link" title="DBLP">
-          <img src="../../assets/icons/dblp.svg" alt="DBLP" class="contact-icon" />
-          <span class="contact-text">{{ t('sections.contact.dblp') }}</span>
-        </a>
-        <a href="https://dblp.org/pid/132/9517-1" target="_blank" class="contact-link" title="DBLP">
-          <img src="../../assets/icons/dblp.svg" alt="DBLP" class="contact-icon" />
-          <span class="contact-text">{{ t('sections.contact.dblp') }}</span>
-        </a>
         <a href="resume-en.pdf" target="_blank" class="contact-link" title="CV">
           <img src="../../assets/icons/resume.svg" alt="CV" class="contact-icon" />
           <span class="contact-text">{{ t('sections.contact.cv') }}</span>

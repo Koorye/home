@@ -36,7 +36,7 @@ export default {
       description: '提升机器人基础模型泛化能力，仿真环境提升 <span class="highlight-red">8%</span>，真实环境提升 <span class="highlight-red">108%</span>',
       tags: ['机器人学', '机器人基础模型', '测试时增强'],
       links: {
-        project: 'https://koorye.github.io/proj/PCD',
+        project: 'https://koorye.github.io/PCD',
         arxiv: 'https://arxiv.org/abs/2505.13255',
         pdf: 'https://arxiv.org/pdf/2505.13255',
         code: 'https://github.com/Koorye/PCD/'
@@ -55,7 +55,7 @@ export default {
       description: '提升 VLA 模型空间推理能力，已见任务提升 <span class="highlight-red">6.2%</span>，未见任务提升 <span class="highlight-red">10%</span>',
       tags: ['机器人学', '视觉-语言-动作模型', '空间推理'],
       links: {
-        project: 'https://koorye.github.io/proj/Inspire',
+        project: 'https://koorye.github.io/Inspire',
         arxiv: 'https://arxiv.org/abs/2412.11509',
         pdf: 'https://arxiv.org/pdf/2412.11509',
         code: 'https://github.com/Koorye/Inspire/'
