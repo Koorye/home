@@ -2,8 +2,8 @@ export default {
   'title': '最新动态',
   'data': [
     {
-      date: '2025年11月',
-      content: '我们的 <span class="highlight-red">RoboCOIN</span> 数据集总下载量达到 <span class="highlight-red">100,000</span> 次！'
+      date: '2025年12月',
+      content: '我们的 <span class="highlight-red">RoboCOIN</span> 数据集总下载量达到 <span class="highlight-red">200,000</span> 次！'
     },
     {
       date: '2025年11月',

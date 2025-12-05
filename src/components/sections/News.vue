@@ -70,12 +70,13 @@ const newsList = useLocaleData('news', 'data');
   color: #0056b3;
   font-size: 0.9rem;
   white-space: nowrap;
+  margin-top: 0.4rem;
 }
 
 .news-content {
   flex: 1;
   background-color: #f8f9fa;
-  padding: 0.8rem 1.2rem;
+  padding: 0.4rem 1.2rem;
   border-radius: 6px;
   border-left: 3px solid #a0c1d9;
 }
