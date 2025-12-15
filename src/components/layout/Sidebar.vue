@@ -40,6 +40,10 @@
           <img src="../../assets/icons/dblp.svg" alt="DBLP" class="contact-icon" />
           <span class="contact-text">{{ t('sections.contact.dblp') }}</span>
         </a>
+        <a href="https://www.linkedin.com/in/shihan-wu-koorye/" target="_blank" class="contact-link" title="LinkedIn">
+          <img src="../../assets/icons/linkedin.svg" alt="LinkedIn" class="contact-icon" />
+          <span class="contact-text">{{ t('sections.contact.linkedin') }}</span>
+        </a>
         <a href="resume-en.pdf" target="_blank" class="contact-link" title="CV">
           <img src="../../assets/icons/resume.svg" alt="CV" class="contact-icon" />
           <span class="contact-text">{{ t('sections.contact.cv') }}</span>

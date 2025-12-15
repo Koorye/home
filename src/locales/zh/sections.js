@@ -15,6 +15,7 @@ export default {
     blog: '个人博客',
     gs: '谷歌学术',
     dblp: 'DBLP',
+    linkedin: '领英',
     cv: 'CV',
     resume: '简历',
   },
