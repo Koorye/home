@@ -1,6 +1,7 @@
-# academic-homepage-new
+# Academic Homepage
 
-This template should help get you started developing with Vue 3 in Vite.
+This repository is used for deployment.
+If you want to set up your own academic homepage based on this template, please visit my [academic template repository](https://github.com/Koorye/academic-homepage-vue-template).
 
 ## Recommended IDE Setup
 
