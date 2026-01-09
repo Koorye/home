@@ -86,7 +86,7 @@ export default {
       ]
     },
     {
-      title: 'A Closer Look at Conditional Prompt Tuning for Vision-Language Models',
+      title: '<span class="highlight-red">[IJCV 2026]</span> A Closer Look at Conditional Prompt Tuning for Vision-Language Models',
       date: '2024年8月',
       image: new URL('../../assets/publications/capt.png', import.meta.url).href,
       description: '发现现有条件提示调优方法中的关键问题，在 11 个数据集上平均超越最先进的条件 PT 方法 <span class="highlight-red">3.49%</span>',
