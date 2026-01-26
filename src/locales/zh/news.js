@@ -3,6 +3,10 @@ export default {
   'data': [
     {
       date: '2026年1月',
+      content: '我们的论文 <span class="highlight-red">Policy Contrastive Decoding for Robotic Foundation Models</span> 已被 <span class="highlight-red">ICLR</span> 接收！'
+    },
+    {
+      date: '2026年1月',
       content: '我们的论文 <span class="highlight-red">A Closer Look at Conditional Prompt Tuning for Vision-Language Models</span> 已被 <span class="highlight-red">IJCV</span> 接收！'
     },
     {

@@ -30,7 +30,7 @@ export default {
       ]
     },
     {
-      title: 'Policy Contrastive Decoding for Robotic Foundation Models',
+      title: '[ICLR 2026] Policy Contrastive Decoding for Robotic Foundation Models',
       date: '2025年9月',
       image: new URL('../../assets/publications/pcd.png', import.meta.url).href,
       description: '提升机器人基础模型泛化能力，仿真环境提升 <span class="highlight-red">8%</span>，真实环境提升 <span class="highlight-red">108%</span>',

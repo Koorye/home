@@ -3,6 +3,10 @@ export default {
   'data': [
     {
       date: 'Jan. 2026',
+      content: 'Our paper on <span class="highlight-red">Policy Contrastive Decoding for Robotic Foundation Models</span> has been accepted by <span class="highlight-red">ICLR</span>!'
+    },
+    {
+      date: 'Jan. 2026',
       content: 'Our paper on <span class="highlight-red">A Closer Look at Conditional Prompt Tuning for Vision-Language Models</span> has been accepted by <span class="highlight-red">IJCV</span>!'
     },
     {
