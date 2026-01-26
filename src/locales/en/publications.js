@@ -30,7 +30,7 @@ export default {
       ]
     },
     {
-      title: 'Policy Contrastive Decoding for Robotic Foundation Models',
+      title: '<span class="highlight-red">[ICLR 2026]</span> Policy Contrastive Decoding for Robotic Foundation Models',
       date: 'Sep. 2025',
       image: new URL('../../assets/publications/pcd.png', import.meta.url).href,
       description: 'Universal framework for multiple VLA architectures, achieving <span class="highlight-red">+8%~41%</span> improvement without training',
