@@ -45,6 +45,31 @@ export default {
       image: new URL('../../assets/gallery/2025-12-01.jpg', import.meta.url).href,
       title: 'Metasequoia',
       description: 'The Metasequoia tree in UESTC, Chengdu, Dec. 2025',
+    },
+    {
+      image: new URL('../../assets/gallery/2026-01-01.jpg', import.meta.url).href,
+      title: 'New Year Lantern Festival',
+      description: 'Lantern Festival, Hefei, Jan. 2026',
+    },
+    {
+      image: new URL('../../assets/gallery/2026-01-01-2.jpg', import.meta.url).href,
+      title: 'New Year Lantern Festival',
+      description: 'Lantern Festival, Hefei, Jan. 2026',
+    },
+    {
+      image: new URL('../../assets/gallery/2026-01-06.jpg', import.meta.url).href,
+      title: 'Library',
+      description: 'The library in UESTC, Chengdu, Jan. 2026',
+    },
+    {
+      image: new URL('../../assets/gallery/2026-01-10.jpg', import.meta.url).href,
+      title: 'Black Swan Baby',
+      description: 'Black swan parents with their babies, Chengdu, Jan. 2026',
+    },
+    {
+      image: new URL('../../assets/gallery/2026-01-25.jpg', import.meta.url).href,
+      title: 'Bee and Plum Blossom',
+      description: 'A bee and plum blossoms, Chengdu, Jan. 2026',
     }
   ]
 }
