@@ -49,7 +49,7 @@ export default {
       ]
     },
     {
-      title: 'InSpire: VLA Models with Intrinsic Spatial Reasoning',
+      title: '<span class="highlight-red">[ICRA 2026]</span> InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning',
       date: '2025年9月',
       image: new URL('../../assets/publications/inspire.png', import.meta.url).href,
       description: '提升 VLA 模型空间推理能力，已见任务提升 <span class="highlight-red">6.2%</span>，未见任务提升 <span class="highlight-red">10%</span>',
