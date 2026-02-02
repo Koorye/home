@@ -11,7 +11,7 @@ export default {
   },
   'data': [
     {
-      title: 'RoboCOIN: An Open-Sourced Bimanual Robotic Data COllection for INtegrated Manipulation',
+      title: 'RoboCOIN: An Open-Sourced Bimanual Robotic Data Collection for Integrated Manipulation',
       date: 'Nov. 2025',
       image: new URL('../../assets/publications/robocoin.png', import.meta.url).href,
       description: 'Open-sourced large-scale bimanual robotic dataset with <span class="highlight-red">15 robotic platforms</span> and <span class="highlight-red">180K+ demonstrations</span>, collaborated with <span class="highlight-red">20 institutions</span>',
