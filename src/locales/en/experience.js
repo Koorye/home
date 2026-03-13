@@ -11,7 +11,7 @@ export default {
     },
     {
       title: 'Master of Computer Science and Technology',
-      organization: 'UESTC',
+      organization: 'University of Electronic Science and Technology of China (UESTC)',
       link: 'https://www.uestc.edu.cn',
       date: '2023-2026',
       logo: new URL('../../assets/icons/uestc.png', import.meta.url).href,
@@ -24,7 +24,7 @@ export default {
     },
     {
       title: 'Bachelor of Software Engineering',
-      organization: 'UESTC',
+      organization: 'University of Electronic Science and Technology of China (UESTC)',
       link: 'https://www.uestc.edu.cn',
       date: '2019-2023',
       logo: new URL('../../assets/icons/uestc.png', import.meta.url).href,

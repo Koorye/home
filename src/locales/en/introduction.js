@@ -2,7 +2,7 @@ export default {
     'name': 'SHIHAN <span class="highlight-blue-bold">WU</span>',
     'email': 'shihan.wu.koorye@outlook.com',
     'data': [
-        'Hello! I am a master student at <a href="https://www.scse.uestc.edu.cn/" target="_blank" class="highlight-link">School of Computer Science and Engineering</a> at <a href="https://www.uestc.edu.cn/" target="_blank" class="highlight-link">University of Electronic Science and Technology of China (UESTC)</a>.',
+        'Hello! I am a master\'s student at the <a href="https://www.scse.uestc.edu.cn/" target="_blank" class="highlight-link">School of Computer Science and Engineering</a>, the <a href="https://www.uestc.edu.cn/" target="_blank" class="highlight-link">University of Electronic Science and Technology of China (UESTC)</a>.',
         'My research interests include <span class="highlight-red">Embodied Intelligence</span> and <span class="highlight-red">Vision-Language Models</span>.',
         'Feel free to reach out to me via email for any inquiries or collaborations!'
     ]
