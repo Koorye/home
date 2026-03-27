@@ -1,20 +1,22 @@
 export default {
-  title: '发表论文',
-  buttons: {
-    'project': '项目',
+  'title': '发表论文',
+  'buttons': {
+    'project': '项目主页',
     'arxiv': 'ArXiv',
-    'pdf': 'PDF',
-    'code': '代码',
+    'pdf': '论文PDF',
+    'code': '代码仓库',
     'click': '点击查看详情',
     'abstract': '摘要',
     'contributions': '主要贡献'
   },
+  'videoTitle': '项目演示视频',
+  'swiperTitle': '项目图示',
   'data': [
     {
       title: 'RoboCOIN: An Open-Sourced Bimanual Robotic Data Collection for Integrated Manipulation',
       date: '2025年11月',
       image: new URL('../../assets/publications/robocoin.png', import.meta.url).href,
-      description: '开源大规模双臂操作机器人数据集，涵盖 <span class="highlight-red">15 种机器人平台</span> 和 <span class="highlight-red">180K+ 高质量轨迹</span>',
+      description: '开源大规模双手操作机器人数据集，包含 <span class="highlight-red">15 个机器人平台</span> 与 <span class="highlight-red">18 万+ 演示数据</span>，联合 <span class="highlight-red">20 家机构</span> 共同构建',
       tags: ['机器人学', '数据集'],
       links: {
         project: 'https://flagopen.github.io/RoboCOIN/',
@@ -22,37 +24,93 @@ export default {
         pdf: 'https://arxiv.org/pdf/2511.17441',
         code: 'https://github.com/FlagOpen/RoboCOIN/'
       },
-      abstract: '双臂操作对于实现类人机器人灵活性至关重要，但由于机器人平台之间的硬件异质性，大规模多样化的双臂机器人数据集仍然稀缺。为了解决这一挑战，我们提出了 RoboCOIN，一个综合性的多平台双臂操作数据集，收集了来自 15 种不同机器人平台的超过 <span class="highlight-red">180,000 条演示轨迹</span>。该数据集涵盖了 <span class="highlight-red">16 种场景</span>，包括住宅、商业和工作环境，系统地组织了 <span class="highlight-red">421 个任务</span>，这些任务根据双臂协调模式和物体属性进行分类。我们的关键创新是一个分层能力金字塔，提供多级注释，涵盖轨迹级概念、片段级子任务和帧级运动学。我们进一步开发了 CoRobot，一个综合处理框架，具有机器人轨迹标记语言（RTML）用于质量评估、自动注释生成和统一的多平台管理。大量实验表明，RoboCOIN 在多平台双臂学习中具有可靠性和有效性，在各种模型架构和机器人平台上显著提升了性能。完整的数据集和框架已开源并公开供进一步研究使用。',
+      abstract: '双手操作是实现类人灵巧操作的核心能力，但由于硬件异构性，大规模、多样化的双手操作机器人数据集仍然稀缺。为解决这一问题，我们提出 RoboCOIN，一个多平台双手操作数据集，包含来自 <span class="highlight-red">15 种不同机器人平台</span> 采集的 <span class="highlight-red">18 万+ 演示数据</span>。数据集覆盖 <span class="highlight-red">16 个场景</span>（家庭、商用、工作环境），包含 <span class="highlight-red">421 个任务</span>，并按双手协作模式与物体属性系统组织。我们的核心创新是分层能力金字塔，提供多粒度标注：轨迹级概念、片段级子任务、帧级运动学信息。我们进一步开发 CoRobot 处理框架，包含机器人轨迹标记语言（RTML）、质量评估、自动标注生成与统一多平台管理。大量实验验证了 RoboCOIN 在多平台双手学习中的可靠性与有效性，在各类模型与机器人平台上均取得显著性能提升。完整数据集与框架已开源。',
       contributions: [
-        '<span class="highlight-red">大规模多平台双臂数据集。</span> 我们引入了 RoboCOIN，一个综合性的数据集，包含来自 15 种不同机器人平台的超过 180,000 条演示轨迹，涵盖 421 个任务。',
-        '<span class="highlight-red">分层能力金字塔。</span> 我们提出了一个分层能力金字塔，包含轨迹级、片段级和帧级描述，实现了从高层次全局概念到低层次控制的多分辨率学习。',
-        '<span class="highlight-red">综合数据处理框架。</span> 我们开发了一个名为 CoRobot 的统一数据处理框架，包括基于 RTML 的评估、自动注释工具链以及用于统一多平台数据集管理和机器人部署的平台。'
+        '<span class="highlight-red">大规模、多平台双手数据集。</span> 提出 RoboCOIN 数据集，包含 18 万+ 演示、421 个任务、15 种机器人平台。',
+        '<span class="highlight-red">分层能力金字塔标注。</span> 构建轨迹级、片段级、帧级三级标注，支持从高层概念到低层控制的多粒度学习。',
+        '<span class="highlight-red">一体化数据处理框架。</span> 开发统一处理框架 CoRobot，包含 RTML 校验、自动标注工具链、多平台数据集管理与部署。'
+      ],
+      video: new URL('../../assets/publications/robocoin/video.mp4', import.meta.url).href,
+      detailImages: [
+        {
+          title: 'RoboCOIN 数据集总览',
+          desc: 'RoboCOIN 是面向双手操作研究的大规模多平台数据集，包含 15 种机器人、18 万+ 演示、421 个任务与 16 个场景。数据集将完全开源供社区使用。',
+          url: new URL('../../assets/publications/robocoin/1.png', import.meta.url).href
+        },
+        {
+          title: 'RoboCOIN 数据采集平台',
+          desc: '(a) 双臂机器人（如 AgileX Cobot Magic）。(b) 半人形机器人（如 Realman RMC-AIDA-L）。(c) 全人形机器人（如 Unitree G1edu-u3）。所有平台均支持多视角视觉观测与灵巧操作。',
+          url: new URL('../../assets/publications/robocoin/2.png', import.meta.url).href
+        },
+        {
+          title: 'RoboCOIN 数据集统计信息',
+          desc: '(a) 15 种机器人平台；(b) 16 种环境；(c) 36 种操作类型；(d) 432 种物体类别，覆盖刚性、铰接、可变形物体。',
+          url: new URL('../../assets/publications/robocoin/3.png', import.meta.url).href
+        },
+        {
+          title: 'RoboCOIN 分层能力金字塔',
+          desc: '轨迹级标注定义全局概念；片段级标注将任务分解为可执行子任务；帧级标注提供稠密运动与夹持器状态。所有标注时间同步，形成统一结构。',
+          url: new URL('../../assets/publications/robocoin/4.png', import.meta.url).href
+        },
+        {
+          title: 'CoRobot 数据处理流程',
+          desc: '(a) 基于 RTML 的轨迹自动校验；(b) 半自动标注工具链；(c) 一体化机器人控制与多平台数据管理平台。',
+          url: new URL('../../assets/publications/robocoin/5.png', import.meta.url).href
+        },
       ]
     },
     {
       title: '<span class="highlight-red">[ICLR 2026]</span> Policy Contrastive Decoding for Robotic Foundation Models',
       date: '2025年9月',
       image: new URL('../../assets/publications/pcd.png', import.meta.url).href,
-      description: '提升机器人基础模型泛化能力，仿真环境提升 <span class="highlight-red">8%</span>，真实环境提升 <span class="highlight-red">108%</span>',
-      tags: ['机器人学', '机器人基础模型', '测试时增强'],
+      description: '适用于多种视觉-语言-动作模型的通用框架，无需训练即可实现 <span class="highlight-red">+8%~41%</span> 性能提升',
+      tags: ['机器人学', '视觉-语言-动作模型', '测试时优化'],
       links: {
         project: 'https://koorye.github.io/PCD',
         arxiv: 'https://arxiv.org/abs/2505.13255',
         pdf: 'https://arxiv.org/pdf/2505.13255',
         code: 'https://github.com/Koorye/PCD/'
       },
-      abstract: '机器人基础模型或通用机器人策略在实现灵活、通用和灵巧的机器人系统方面具有巨大潜力。尽管取得了进展，我们的实证实验表明，现有的机器人策略容易从预训练轨迹中学习到虚假的相关性，从而对其超出训练数据的泛化能力产生不利影响。为了解决这个问题，我们提出了一种新颖的策略对比解码（PCD）方法，通过对比来自原始和对象遮挡视觉输入的动作概率分布，将机器人策略的注意力重新引导到与对象相关的视觉线索上。作为一种无需训练的方法，我们的 PCD 可以作为插件使用，以提高不同类型的机器人策略，而无需微调或访问模型权重。我们在三个开源机器人策略之上进行了广泛的实验，包括自回归策略 OpenVLA 和基于扩散的策略 Octo 和 π0。在仿真和真实环境中获得的结果证明了 PCD 的灵活性和有效性，例如，PCD 在仿真环境中将最先进的策略 π0 提升了 <span class="highlight-red">8%</span>，在真实环境中提升了 <span class="highlight-red">108%</span>。',
+      abstract: '机器人基础模型（通用机器人策略）具有实现灵活、通用、灵巧机器人系统的巨大潜力。尽管取得进展，我们发现现有机器人策略容易从预训练轨迹中学习伪相关，影响泛化能力。为此，我们提出**策略对比解码（PCD）**，通过对比原始与物体掩码视觉输入的动作概率分布，引导策略关注物体相关视觉线索。作为无需训练的插件式方法，PCD 可直接增强各类机器人策略，无需微调或访问模型权重。我们在三个开源机器人策略（OpenVLA、Octo、π0）上进行大量实验，仿真与现实环境均证明 PCD 的灵活性与有效性：例如在 π0 上提升 <span class="highlight-red">8%</span>（仿真）与 <span class="highlight-red">108%</span>（现实）。',
       contributions: [
-        '我们提出了 PCD，一种简单、无需训练且易于实现的方法来解决机器人策略中的虚假相关性问题。',
-        'PCD 可以作为插件使用，以增强自回归和基于扩散的策略，而无需微调或访问预训练模型权重。',
-        '大量实验表明，PCD 的有效性和灵活性，在多个机器人平台上的 15 个操作任务中，始终提升了三种最先进策略的性能。'
+        '提出 PCD，一种简单、无需训练、易部署的机器人策略伪相关缓解方案。',
+        'PCD 可作为插件增强自回归与扩散类策略，无需微调或访问预训练权重。',
+        '大量实验证明 PCD 在 15 个操作任务、3 个 SOTA 策略、多机器人平台上稳定有效。'
+      ],
+      video: new URL('../../assets/publications/pcd/video.mp4', import.meta.url).href,
+      detailImages: [
+        {
+          title: '机器人基础模型的伪相关问题',
+          desc: '策略易将任务无关特征与动作关联，导致泛化下降。例如改变光照或把手位置会使 OpenVLA 性能下降 36% / 32%。(d) 为注意力可视化。',
+          url: new URL('../../assets/publications/pcd/1.png', import.meta.url).href
+        },
+        {
+          title: '策略对比解码（PCD）总览',
+          desc: 'PCD 通过对比原始观测 p 与掩码观测 p̂ 的动作分布，引导模型关注物体相关区域。图中仅展示动作空间 ∆x/∆y 维度。',
+          url: new URL('../../assets/publications/pcd/2.png', import.meta.url).href
+        },
+        {
+          title: '仿真实验结果（SIMPLER）',
+          desc: '使用点/框提示或 GDINO 自动标注目标。PCD 在 9 个任务上稳定大幅提升三个基线模型。',
+          url: new URL('../../assets/publications/pcd/3.png', import.meta.url).href
+        },
+        {
+          title: '现实世界实验结果',
+          desc: '使用 GDINO 自动标注目标。PCD 带来 108% 性能提升，时间开销仅增加 24%。',
+          url: new URL('../../assets/publications/pcd/4.png', import.meta.url).href
+        },
+        {
+          title: '未见场景泛化性能',
+          desc: 'PCD 有效缓解各类伪相关，显著提升机器人策略在新场景中的泛化能力。',
+          url: new URL('../../assets/publications/pcd/5.png', import.meta.url).href
+        }
       ]
     },
     {
       title: '<span class="highlight-red">[ICRA 2026]</span> InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning',
       date: '2025年9月',
       image: new URL('../../assets/publications/inspire.png', import.meta.url).href,
-      description: '提升 VLA 模型空间推理能力，已见任务提升 <span class="highlight-red">6.2%</span>，未见任务提升 <span class="highlight-red">10%</span>',
+      description: '降低视觉-语言-动作模型的伪相关，在已见任务提升 <span class="highlight-red">+6.2%</span>，未见任务提升 <span class="highlight-red">+10%</span>',
       tags: ['机器人学', '视觉-语言-动作模型', '空间推理'],
       links: {
         project: 'https://koorye.github.io/Inspire',
@@ -60,65 +118,164 @@ export default {
         pdf: 'https://arxiv.org/pdf/2412.11509',
         code: 'https://github.com/Koorye/Inspire/'
       },
-      abstract: '利用预训练的视觉-语言模型（VLM）将语言指令和视觉观察映射到低级动作，视觉-语言-动作模型（VLA）在实现通用机器人系统方面具有巨大潜力。尽管取得了进展，现有的 VLA 往往会将与任务无关的视觉特征与动作产生虚假的相关性，从而限制了其超出训练数据的泛化能力。为了解决这一挑战，我们提出了内在空间推理（InSpire），这是一种简单而有效的方法，通过提升 VLA 的空间推理能力来减轻虚假相关性的负面影响。具体而言，InSpire 通过在语言指令前添加问题“[对象] 相对于机器人处于哪个方向？”并将答案“右/左/上/下/前/后/抓取”与预测动作对齐来引导 VLA 的注意力集中在与任务相关的因素上。值得注意的是，InSpire 可以作为插件使用，以增强现有的自回归 VLA，无需额外的训练数据或与其他大型模型交互。在仿真和真实环境中获得的大量实验结果证明了 InSpire 的有效性和灵活性。',
+      abstract: '视觉-语言-动作模型（VLA）利用预训练视觉-语言模型将指令与观测映射到底层动作，具有构建通用机器人系统的潜力。尽管取得进展，现有 VLA 易学习任务无关的伪相关，限制泛化能力。为此，我们提出 **InSpire（内在空间推理）**，通过增强 VLA 的空间推理能力缓解伪相关影响。具体方法：在语言指令前加入空间问题“目标物体相对于机器人的方向？”，并让模型输出方向答案（左/右/上/下/前/后/已抓取），与动作预测联合监督。InSpire 可作为插件增强现有自回归 VLA，无需额外数据或其他模型。仿真与现实实验均验证其有效性。',
       contributions: [
-        '我们提出了 InSpire，一种新颖的方法，旨在减轻虚假相关性对 VLA 泛化性能的负面影响。',
-        'InSpire 以插件方式为 VLA 提供空间推理能力，无需额外数据或与其他大型模型交互。',
-        '在仿真和真实环境中进行的全面评估证明了所提出的 InSpire 方法的有效性和灵活性。'
+        '提出 InSpire，缓解视觉-语言-动作模型伪相关与泛化下降问题。',
+        'InSpire 以插件形式赋予 VLA 空间推理能力，无需额外数据或模型交互。',
+        '在仿真与现实环境中全面验证 InSpire 的有效性与通用性。'
+      ],
+      video: new URL('../../assets/publications/inspire/video.mp4', import.meta.url).href,
+      detailImages: [
+        {
+          title: 'VLA 模型的伪相关问题',
+          desc: '(a) 传统 VLA 依赖直接观测-动作映射，易学习伪相关。(b) InSpire 通过增强空间推理缓解伪相关。(c) InSpire 可插件式提升 SOTA 模型。',
+          url: new URL('../../assets/publications/inspire/1.png', import.meta.url).href
+        },
+        {
+          title: 'InSpire 方法总览',
+          desc: '在语言指令前加入空间方位问题，让模型同时预测动作与空间关系，提升空间推理能力。',
+          url: new URL('../../assets/publications/inspire/2.png', import.meta.url).href
+        },
+        {
+          title: 'LIBERO 实验结果',
+          desc: 'InSpire 在 LIBERO 基准上显著提升 miniVLA-VQ 与 π0-FAST 等 SOTA 模型性能。',
+          url: new URL('../../assets/publications/inspire/3.png', import.meta.url).href
+        },
+        {
+          title: '现实世界实验结果',
+          desc: '(a)(b) InSpire 在已见/未见任务均显著提升 π0-FAST；(c) 单步时间开销。',
+          url: new URL('../../assets/publications/inspire/4.png', import.meta.url).href
+        },
+        {
+          title: '效果可视化展示',
+          url: new URL('../../assets/publications/inspire/5.png', import.meta.url).href
+        }
       ]
     },
     {
       title: '<span class="highlight-red">[CVPR 2025]</span> Skip Tuning: Pre-trained Vision-Language Models are Effective and Efficient Adapters Themselves',
       date: '2024年12月',
       image: new URL('../../assets/publications/skiptuning.png', import.meta.url).href,
-      description: '无需额外参数的适配方法，<span class="highlight-red">提升 1.04%</span> 准确率，<span class="highlight-red">加速 15 倍</span>，<span class="highlight-red">节省 6.4 倍</span> 内存',
-      tags: ['视觉-语言模型', '迁移学习', '效率'],
+      description: '无参数自适应方法，精度提升 <span class="highlight-red">+1.04%</span>，速度提升 <span class="highlight-red">15倍</span>，内存效率提升 <span class="highlight-red">6.4倍</span>',
+      tags: ['视觉-语言模型', '迁移学习', '高效训练'],
       links: {
         arxiv: 'https://arxiv.org/abs/2412.11509',
         pdf: 'https://arxiv.org/pdf/2412.11509',
         code: 'https://github.com/Koorye/SkipTuning/'
       },
-      abstract: '提示调优（PT）长期以来被认为是一种有效且高效的范式，通过学习一小组上下文向量将大型预训练视觉-语言模型（VLM）转移到下游任务。然而，在本工作中，我们揭示了在学习上下文向量时冻结 VLM 参数既不能促进预训练知识的可转移性，也不能显著提高内存和时间效率。经过进一步调查，我们发现减少全微调（FT）基线的特征梯度传播流的长度和宽度对于实现有效且高效的知识转移至关重要。受此启发，我们提出了 Skip Tuning，这是一种将 VLM 适配到下游任务的新范式。与现有的 PT 或基于适配器的方法不同，Skip Tuning 在 FT 基线上应用了层跳跃（LSkip）和类跳跃（CSkip），而无需引入额外的上下文向量或适配器模块。在广泛的基准测试中进行的大量实验表明，我们的 Skip Tuning 在有效性和效率方面优于 PT 和基于适配器的方法。',
+      abstract: '提示微调（PT）通过学习少量上下文向量实现视觉-语言模型（VLM）高效迁移。但我们发现：微调时冻结 VLM 既不利于知识迁移，也无法显著提升效率。进一步研究表明：降低全量微调（FT）的特征-梯度传播流长度与宽度，是实现高效知识迁移的关键。据此，我们提出 **Skip Tuning**，无需引入额外向量或适配器，仅在全量微调基础上使用层跳过（LSkip）与类别跳过（CSkip）。大量实验证明，Skip Tuning 在精度与效率上均显著优于现有 PT 与适配器方法。',
       contributions: [
-        '我们揭示了减少全微调（FT）基线的特征梯度传播流的长度和宽度对于实现有效且高效的知识转移至关重要。',
-        '我们设计了 Skip Tuning，这是一种将 VLM 适配到下游任务的新方法，无需依赖额外的上下文向量或适配器模块。',
-        '我们在广泛的基准测试中评估了我们的方法，证明了 Skip Tuning 在有效性和效率方面优于提示调优和基于适配器的方法。'
+        '揭示降低特征-梯度传播流的长度与宽度是实现高效迁移的关键。',
+        '提出 Skip Tuning，无需额外参数或模块即可实现高效迁移。',
+        '在广泛基准上验证 Skip Tuning 优于提示微调与适配器方法。'
+      ],
+      detailImages: [
+        {
+          title: '与 SOTA 提示微调方法对比',
+          desc: 'Skip Tuning 在训练时间、内存消耗、分类精度上全面优于现有方法。',
+          url: new URL('../../assets/publications/skip/1.png', import.meta.url).href
+        },
+        {
+          title: '研究动机',
+          desc: '(a) CoOp 与全量微调在参数、内存、时间、性能上对比；(b) CLIP 各层特征敏感度；(c) 类别token梯度依赖度。',
+          url: new URL('../../assets/publications/skip/2.png', import.meta.url).href
+        },
+        {
+          title: 'Skip Tuning 总览',
+          desc: '通过层跳过（LSkip）与类别跳过（CSkip）减少传播量，在保持精度的同时大幅提升效率。',
+          url: new URL('../../assets/publications/skip/3.png', import.meta.url).href
+        },
+        {
+          title: '基类-新类泛化结果（11 个数据集）',
+          url: new URL('../../assets/publications/skip/4.png', import.meta.url).href
+        },
+        {
+          title: '小样本学习结果（11 个数据集）',
+          url: new URL('../../assets/publications/skip/5.png', import.meta.url).href
+        }
       ]
     },
     {
       title: '<span class="highlight-red">[IJCV 2026]</span> A Closer Look at Conditional Prompt Tuning for Vision-Language Models',
       date: '2024年8月',
       image: new URL('../../assets/publications/capt.png', import.meta.url).href,
-      description: '发现现有条件提示调优方法中的关键问题，在 11 个数据集上平均超越最先进的条件 PT 方法 <span class="highlight-red">3.49%</span>',
-      tags: ['视觉-语言模型', '迁移学习', '提示调优'],
+      description: '揭示现有条件提示微调的核心问题，相对 SOTA 提升精度 <span class="highlight-red">3.49%</span>',
+      tags: ['视觉-语言模型', '迁移学习', '提示微调'],
       links: {
         arxiv: 'https://arxiv.org/abs/2506.23856',
         pdf: 'https://arxiv.org/pdf/2506.23856',
         code: 'https://github.com/Koorye/CaPT/'
       },
-      abstract: '尽管提示调优（PT）在将大型视觉-语言预训练模型（VLPM）适配到下游任务方面展现出巨大潜力，但它们往往难以克服基础-新任务权衡（BNT）困境：随着 VLPM 更好地适应基础任务，其泛化到新任务的能力会下降。最近关于条件 PT 的工作通过用动态的视觉图像信息（VII）条件化提示来替换静态提示，在一定程度上改善了模型对新任务的泛化能力。在本工作中，我们首先发现了现有条件 PT 方法的一个关键问题：使用 VII 作为提示的“条件”会导致性能不佳，甚至随机噪声条件化的提示也能胜过 VII 条件化的对应方法。经过进一步分析，我们发现学习基于文本类别信息（TCI）条件化的动态提示是解决 BNT 问题的关键。受此启发，我们提出了类适应性提示调优（CaPT），通过从基础类别学习 TCI 条件化提示，实现对新类别的快速适应。值得注意的是，CaPT 可以作为插件使用，以缓解现有无条件 PT 方案中的 BNT 问题。在 11 个数据集上进行的大量实验表明，CaPT 始终提升了五个强大的无条件 PT 基线的性能，且几乎没有额外的计算成本。此外，通过将 CaPT 与我们最近提出的 DePT 框架相结合，我们设计了一种新的条件 PT 方法，称为 DeCaPT，其 H ACC 超过了最先进的条件 PT 方案，平均提升了 <span class="highlight-red">3.49%</span>。',
+      abstract: '提示微调（PT）在适配视觉-语言模型时面临基类-新类权衡（BNT）：模型在基类上越好，在新类上泛化越差。现有条件提示微调使用视觉图像信息（VII）生成动态提示，但效果有限。本文首次发现：**基于文本类别信息（TCI）的动态提示**才是解决 BNT 的关键。据此提出 **类别自适应提示微调（CaPT）**，通过学习 TCI 条件提示实现快速泛化。CaPT 可插件式增强现有 PT 方法，计算开销可忽略。在 11 个数据集上，CaPT 稳定提升 5 种 PT 基线；结合 DePT 得到的 DeCaPT 相对 SOTA 提升 <span class="highlight-red">3.49%</span>。',
       contributions: [
-        '我们首次揭示了缓解条件提示调优中基础-新任务权衡（BNT）问题的关键在于学习基于文本类别信息的动态提示，而非视觉图像信息。',
-        '我们提出了 CaPT，这是首个专门针对 BNT 问题的 TCI 条件化提示调优方案。值得注意的是，CaPT 可以灵活地与现有的无条件提示调优范式集成。',
-        '我们在 11 个数据集上进行了大量实验，证明了 CaPT 的灵活性和有效性——CaPT 在基础到新任务泛化、跨数据集泛化和跨域泛化设置中始终提升了广泛的提示调优方法的性能。'
+        '首次揭示：条件提示微调的关键是文本类别信息（TCI），而非视觉图像信息（VII）。',
+        '提出 CaPT，首个专注解决 BNT 问题的 TCI 条件提示方案，可插件式集成。',
+        '在 11 个数据集上验证 CaPT 在基类泛化、跨数据集、跨域场景的有效性。'
+      ],
+      detailImages: [
+        {
+          title: '不同条件提示方法对比',
+          desc: '上方：5 种 PT 方法加入 CaPT 前后的调和均值精度；下方：CaPT 计算开销。',
+          url: new URL('../../assets/publications/capt/1.png', import.meta.url).href
+        },
+        {
+          title: '条件提示微调的深入分析',
+          desc: '(a) CoOp；(b) CoCoOp；(c) 4 种条件输入；(d) 基类-新类泛化结果。证明 TCI 远优于 VII。',
+          url: new URL('../../assets/publications/capt/2.png', import.meta.url).href
+        },
+        {
+          title: '类别自适应提示微调（CaPT）总览',
+          desc: '利用 Word2Vec 提取文本类别信息 TCI，通过 Meta-Net 生成条件提示，并用 Margin-ITM 损失增强泛化。',
+          url: new URL('../../assets/publications/capt/3.png', import.meta.url).href
+        },
+        {
+          title: 'Margin-ITM 损失设计动机',
+          desc: '过度拉大基类间距会损害新类表示，因此设计温和的间隔损失。',
+          url: new URL('../../assets/publications/capt/4.png', import.meta.url).href
+        },
+        {
+          title: '11 个数据集上的基类-新类泛化性能',
+          url: new URL('../../assets/publications/capt/5.png', import.meta.url).href
+        }
       ]
     },
     {
       title: '<span class="highlight-red">[CVPR 2024]</span> Decoupled Prompt Tuning',
       date: '2023年11月',
       image: new URL('../../assets/publications/dept.png', import.meta.url).href,
-      description: '突破提示调优中的基础-新任务权衡困境，平均提升新任务性能 <span class="highlight-red">2.65%</span>',
-      tags: ['视觉-语言模型', '迁移学习', '提示调优'],
+      description: '即插即用，在各类提示微调基线上稳定带来 <span class="highlight-red">+0.67%~2.65%</span> 提升',
+      tags: ['视觉-语言模型', '迁移学习', '提示微调'],
       links: {
         arxiv: 'https://arxiv.org/abs/2309.07439',
         pdf: 'https://arxiv.org/pdf/2309.07439',
         code: 'https://github.com/Koorye/DePT/'
       },
-      abstract: '本工作突破了提示调优中的基础-新任务权衡（BNT）困境：即调优后的模型对基础（或目标）任务的泛化能力越强，对新任务的泛化能力就越差，反之亦然。具体而言，通过对基础和新任务学习特征的深入分析，我们观察到 BNT 源于通道偏差问题——绝大多数特征通道被基础特定知识占据，导致对新任务重要的任务共享知识崩溃。为了解决这个问题，我们提出了分离提示调优（DePT）框架，在提示调优过程中将基础特定知识从特征通道中分离到一个隔离的特征空间中，从而最大限度地保留原始特征空间中的任务共享知识，以实现对新任务的更好零样本泛化。值得注意的是，我们的 DePT 与现有的提示调优方法是正交的，可以以极低的额外计算成本增强它们。在多个数据集上进行的大量实验展示了 DePT 的灵活性和有效性。',
+      abstract: '本文突破提示微调中的基类-新类权衡（BNT）困境：模型在基类（目标任务）上表现越好，在新任务上泛化越差。通过深度分析特征，我们发现 BNT 源于**通道偏置**：大量特征通道被基类特定知识占据，导致任务共享知识坍塌。为此提出 **解耦提示微调（DePT）**：在微调时将基类特定知识解耦到独立空间，最大程度保留任务共享知识，从而提升新任务零样本泛化。DePT 与现有方法正交，可即插即用，计算开销可忽略。在多个数据集上验证了灵活性与有效性。',
       contributions: [
-        '我们首次揭示了提示调优中基础-新任务权衡（BNT）问题的关键在于通道偏差问题。',
-        '我们提出了 DePT 框架，从特征解耦的角度解决 BNT 问题，DePT 与现有的提示调优方法是正交的。',
-        '我们在 11 个多样化的数据集上进行了实验，表明 DePT 始终增强了广泛基线方法的性能。'
+        '深入揭示 BNT 问题根源为通道偏置（channel bias）。',
+        '提出 DePT 解耦框架，从特征解耦角度解决 BNT，与现有方法正交兼容。',
+        '在 11 个数据集上验证 DePT 可稳定提升各类基线方法。'
+      ],
+      detailImages: [
+        {
+          title: 'DePT 与 SOTA 提示微调方法对比',
+          desc: '6 种方法加入 DePT 前后在基类/新类任务的精度对比（11 个数据集平均）。',
+          url: new URL('../../assets/publications/dept/1.png', import.meta.url).href
+        },
+        {
+          title: 'DePT 框架示意图',
+          desc: '使用通道调整迁移头（CAT）捕获基类特定知识，保留共享知识，推理时融合两路输出。',
+          url: new URL('../../assets/publications/dept/2.png', import.meta.url).href
+        },
+        {
+          title: '通道重要度分布对比',
+          desc: 'DePT 显著缓解通道偏置，让通道更均衡地支持基类与新类。',
+          url: new URL('../../assets/publications/dept/3.png', import.meta.url).href
+        },
+        {
+          title: '6 种基线加入 DePT 后的泛化性能（11 个数据集）',
+          url: new URL('../../assets/publications/dept/4.png', import.meta.url).href
+        }
       ]
     }
   ]
