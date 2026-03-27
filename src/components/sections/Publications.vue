@@ -1,402 +1,3 @@
-<!-- <template>
-  <section id="publications" class="section">
-    <h2>{{ t('publications.title') }}</h2>
-    <div class="publication-list">
-      <div 
-        v-for="(pub, index) in publications" 
-        :key="index" 
-        class="publication-item"
-        @click="togglePublication(index)"
-      >
-        <div class="pub-header">
-          <h3 v-html="pub.title"></h3>
-          <span class="pub-date">{{ pub.date }}</span>
-        </div>
-        <div class="pub-body">
-          <div class="publication-image">
-            <img :src="pub.image" :alt="pub.title" />
-          </div>
-          <div class="publication-content">
-            <p v-html="pub.description"></p>
-            <div class="pub-tags">
-              <span v-for="tag in pub.tags" :key="tag" class="keyword-tag">{{ tag }}</span>
-            </div>
-            <div v-if="pub.links" class="pub-links">
-              <a 
-                v-for="(link, key) in pub.links" 
-                :key="key" 
-                :href="link" 
-                target="_blank" 
-                class="pub-link-btn"
-              >
-                <span class="link-icon" v-html="getIcon(key)"></span> 
-                {{ formatLinkText(key) }}
-                <span v-if="key === 'code'" class="star-count">
-                  <span v-if="starCounts[getRepoKey(link)] === 'loading'">
-                    <i class="fas fa-spinner fa-spin"></i>
-                  </span>
-                  <span v-else-if="starCounts[getRepoKey(link)] === 'error'">
-                    <i class="fas fa-exclamation-circle"></i>
-                  </span>
-                  <span v-else-if="starCounts[getRepoKey(link)] !== undefined">
-                    <i class="fas fa-star"></i> {{ starCounts[getRepoKey(link)] }}
-                  </span>
-                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="pub-details" :class="{ 'show-details': expandedIndex === index }">
-          <div class="detail-section">
-            <h4>{{ t('publications.buttons.abstract') }}</h4>
-            <p v-html="pub.abstract"></p>
-          </div>
-          <div class="detail-section">
-            <h4>{{ t('publications.buttons.contributions') }}</h4>
-            <ul>
-              <li v-for="(contrib, i) in (pub.contributions)" :key="i">
-                <p v-html="contrib"></p>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="click-tip">{{ t('publications.buttons.click') }}</div>
-      </div>
-    </div>
-  </section>
-</template>
-
-<script setup>
-import { ref, watch, onMounted } from 'vue';
-import { useGitHubStars } from '@/composables/useGitHubStars';
-import { useI18n } from 'vue-i18n';
-import { useLocaleData } from '@/composables/useLocaleData';
-
-const { t } = useI18n();
-
-const publications = useLocaleData('publications', 'data');
-
-// GitHub Stars相关
-const { starCounts, getRepoKey, fetchStarsForRepos, fetchStars } = useGitHubStars();
-
-// 展开/收起控制
-const expandedIndex = ref(-1);
-const togglePublication = (index) => {
-  expandedIndex.value = expandedIndex.value === index ? -1 : index;
-};
-
-// 格式化链接文本
-const formatLinkText = (key) => {
-  return t(`publications.buttons.${key}`);
-};
-
-// 链接图标
-const getIcon = (key) => {
-  const iconMap = {
-    project: '<i class="fas fa-globe"></i>',
-    arxiv: '<i class="ai ai-arxiv"></i>',
-    pdf: '<i class="fas fa-file-pdf"></i>',
-    code: '<i class="fab fa-github"></i>'
-  };
-  return iconMap[key] || '';
-};
-
-// 监听publications变化，获取所有GitHub仓库的star数
-watch(publications, (newPublications) => {
-  if (newPublications && newPublications.length) {
-    // 收集所有GitHub链接
-    const githubUrls = [];
-    newPublications.forEach(pub => {
-      if (pub.links && pub.links.code) {
-        githubUrls.push(pub.links.code);
-      }
-    });
-    
-    // 批量获取star数
-    fetchStarsForRepos(githubUrls);
-  }
-}, { immediate: true });
-
-// 也可以在点击时懒加载
-const loadStarsOnClick = (link) => {
-  const repoKey = getRepoKey(link);
-  if (repoKey && !starCounts.value[repoKey]) {
-    fetchStars(repoKey);
-  }
-};
-</script>
-
-<style scoped>
-/* 原有样式保持不变 */
-.section {
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid #eaeaea;
-}
-
-.section h2 {
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  color: #0056b3;
-  padding-bottom: 0.5rem;
-}
-
-/* 出版物特有样式 */
-.publication-list {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.publication-item {
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  cursor: pointer;
-}
-
-.publication-item:hover {
-  transform: translateY(-8px) scale(1.01);
-  box-shadow: 0 12px 20px rgba(0,0,0,0.15);
-}
-
-.pub-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  background-color: #eff4ff;
-}
-
-.pub-header h3 {
-  margin: 0;
-  font-size: 1.1rem;
-  color: #0056b3;
-}
-
-.pub-date {
-  color: #666;
-  font-size: 0.9rem;
-  white-space: nowrap;
-  background-color: #fff;
-  padding: 2px 8px;
-  border-radius: 4px;
-  border: 1px solid #d1e7ff;
-}
-
-.pub-body {
-  display: flex;
-  flex: 1;
-  padding-left: 10px;
-}
-
-.publication-image {
-  flex: 0 0 400px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.publication-image img {
-  width: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.publication-item:hover .publication-image img {
-  transform: scale(1.03);
-}
-
-.publication-content {
-  flex: 1;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.publication-content p {
-  margin: 0;
-  line-height: 1.6;
-}
-
-.pub-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.keyword-tag {
-  display: inline-block;
-  background-color: #e1f0fa;
-  color: #2980b9;
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-}
-
-.pub-links {
-  margin-top: 1rem;
-  display: flex;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-}
-
-.pub-link-btn {
-  padding: 4px 12px 4px 28px;
-  position: relative;
-  background-color: #e6f2ff;
-  color: #0056b3;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  border: 1px solid #d1e7ff;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.pub-link-btn:hover {
-  background-color: #d1e7ff;
-  transform: translateY(-2px);
-}
-
-.pub-link-btn .link-icon {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.1em;
-}
-
-/* Star 数样式增强 */
-.star-count {
-  color: #ff9800;
-  font-weight: 600;
-  font-size: 0.8em;
-  margin-left: 6px;
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  min-width: 20px;
-}
-
-.star-count .fa-spinner {
-  color: #0056b3;
-  font-size: 0.9em;
-  animation: spin 1s linear infinite;
-}
-
-.star-count .fa-exclamation-circle {
-  color: #e74c3c;
-  font-size: 0.9em;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* 详情区域样式 */
-.pub-details {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: all 0.5s ease;
-  padding: 0 1.5rem;
-}
-
-.pub-details.show-details {
-  max-height: 1000px;
-  opacity: 1;
-  padding: 1.5rem;
-}
-
-.detail-section {
-  margin-bottom: 1.5rem;
-}
-
-.detail-section:last-child {
-  margin-bottom: 0;
-}
-
-.detail-section h4 {
-  color: #0056b3;
-  margin-bottom: 0.8rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-.detail-section p {
-  font-size: 0.98rem;
-  line-height: 1.7;
-  color: #333;
-}
-
-.detail-section ul {
-  padding-left: 1.8rem;
-  margin: 0;
-}
-
-.detail-section li {
-  font-size: 0.98rem;
-  line-height: 1.7;
-  margin-bottom: 0.5rem;
-  color: #333;
-}
-
-.detail-section li:last-child {
-  margin-bottom: 0;
-}
-
-.click-tip {
-  font-size: 0.85rem;
-  color: #888;
-  text-align: center;
-  margin-bottom: 0.5rem;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  opacity: 1;
-  visibility: visible;
-}
-
-.publication-item .pub-details.show-details + .click-tip {
-  opacity: 0;
-  visibility: hidden;
-  height: 0;
-  margin-bottom: 0;
-}
-
-/* 响应式适配 */
-@media (max-width: 768px) {
-  .pub-body {
-    flex-direction: column;
-  }
-  
-  .publication-image {
-    flex: 0 0 200px;
-  }
-  
-  .pub-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-  
-  .pub-details.show-details {
-    max-height: 2000px;
-  }
-}
-</style> -->
-
 <template>
   <section id="publications" class="section">
     <h2>{{ t('publications.title') }}</h2>
@@ -407,10 +8,12 @@ const loadStarsOnClick = (link) => {
         class="publication-item"
         @click="togglePublication(index)"
       >
+        <!-- 1. 顶部预览区域：点击切换展开/收起 -->
         <div class="pub-header">
           <h3 v-html="pub.title"></h3>
           <span class="pub-date">{{ pub.date }}</span>
         </div>
+
         <div class="pub-body">
           <div class="publication-image">
             <img :src="pub.image" :alt="pub.title" />
@@ -420,14 +23,15 @@ const loadStarsOnClick = (link) => {
             <div class="pub-tags">
               <span v-for="tag in pub.tags" :key="tag" class="keyword-tag">{{ tag }}</span>
             </div>
-            <div v-if="pub.links" class="pub-links">
+            
+            <!-- 链接按钮：@click.stop 阻止折叠 -->
+            <div v-if="pub.links" class="pub-links" @click.stop>
               <a 
                 v-for="(link, key) in pub.links" 
                 :key="key" 
                 :href="link" 
                 target="_blank" 
                 class="pub-link-btn"
-                @click.stop
               >
                 <span class="link-icon" v-html="getIcon(key)"></span> 
                 {{ formatLinkText(key) }}
@@ -447,24 +51,26 @@ const loadStarsOnClick = (link) => {
           </div>
         </div>
 
-        <!-- 详情区域 -->
-        <div class="pub-details" :class="{ 'show-details': expandedIndex === index }">
+        <!-- 2. 详情区域：@click.stop 确保点击内部任何地方都不会关闭 -->
+        <div 
+          class="pub-details" 
+          :class="{ 'show-details': expandedIndex === index }"
+          @click.stop
+        >
           
-          <!-- ====================== -->
-          <!-- 视频展示（美化版） -->
-          <!-- ====================== -->
+          <!-- 视频 -->
           <div v-if="pub.video" class="detail-media-section">
             <div class="detail-section">
               <h4>{{ t('publications.videoTitle') }}</h4>
             </div>
             <div class="video-wrapper">
               <video 
+                :ref="el => videoRefs[index] = el"
                 class="detail-video"
                 controls
                 muted
                 loop
                 playsinline
-                autoplay
                 preload="metadata"
               >
                 <source :src="pub.video" type="video/mp4" />
@@ -473,9 +79,7 @@ const loadStarsOnClick = (link) => {
             </div>
           </div>
 
-          <!-- ====================== -->
-          <!-- Swiper 轮播（无箭头、美化版） -->
-          <!-- ====================== -->
+          <!-- 轮播图 -->
           <div v-if="pub.detailImages && pub.detailImages.length" class="detail-media-section">
             <div class="detail-section">
               <h4>{{ t('publications.swiperTitle') }}</h4>
@@ -484,10 +88,10 @@ const loadStarsOnClick = (link) => {
               <swiper
                 :modules="[Autoplay, Pagination]"
                 :loop="true"
-                :autoplay="{ delay: 3500, disableOnInteraction: false }"
+                :autoplay="{ delay: 3500, disableOnInteraction: true }"
                 :pagination="{ clickable: true }"
-                :navigation="false"
                 class="mySwiper"
+                @swiper="(swiper) => onSwiperInit(index, swiper)"
               >
                 <swiper-slide v-for="(img, idx) in pub.detailImages" :key="idx">
                   <div class="swiper-img-container">
@@ -522,12 +126,12 @@ const loadStarsOnClick = (link) => {
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, nextTick, reactive } from 'vue';
 import { useGitHubStars } from '@/composables/useGitHubStars';
 import { useI18n } from 'vue-i18n';
 import { useLocaleData } from '@/composables/useLocaleData';
 
-// Swiper
+// Swiper 相关
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -538,8 +142,43 @@ const publications = useLocaleData('publications', 'data');
 const { starCounts, getRepoKey, fetchStarsForRepos } = useGitHubStars();
 
 const expandedIndex = ref(-1);
-const togglePublication = (index) => {
-  expandedIndex.value = expandedIndex.value === index ? -1 : index;
+const videoRefs = ref([]);
+const swiperInstances = reactive({}); // 存储每个列表项的 Swiper 实例
+
+// 捕获 Swiper 实例
+const onSwiperInit = (index, swiper) => {
+  swiperInstances[index] = swiper;
+};
+
+const togglePublication = async (index) => {
+  const wasExpanded = expandedIndex.value === index;
+
+  if (wasExpanded) {
+    expandedIndex.value = -1;
+    return;
+  }
+
+  expandedIndex.value = index;
+
+  // 等待 DOM 完成渲染展开动画和 v-if 逻辑
+  await nextTick();
+
+  // 1. 重置并播放视频
+  const video = videoRefs.value[index];
+  if (video) {
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  }
+
+  // 2. 强制轮播图回到第一张 (slideToLoop 是循环模式下最稳妥的方法)
+  const swiper = swiperInstances[index];
+  if (swiper) {
+    swiper.slideToLoop(0, 0); // (索引0, 速度0ms即瞬间跳转)
+    if (swiper.autoplay && swiper.autoplay.running) {
+      swiper.autoplay.stop();
+      swiper.autoplay.start();
+    }
+  }
 };
 
 const formatLinkText = (key) => t(`publications.buttons.${key}`);
@@ -553,16 +192,15 @@ const getIcon = (key) => {
   return iconMap[key] || '';
 };
 
-watch(publications, (newPublications) => {
-  if (!newPublications?.length) return;
+watch(publications, (newPubs) => {
+  if (!newPubs?.length) return;
   const githubUrls = [];
-  newPublications.forEach(pub => pub.links?.code && githubUrls.push(pub.links.code));
+  newPubs.forEach(pub => pub.links?.code && githubUrls.push(pub.links.code));
   fetchStarsForRepos(githubUrls);
 }, { immediate: true });
 </script>
 
 <style scoped>
-/* 原有样式保持不变 */
 .section {
   margin-bottom: 2rem;
   padding-bottom: 2rem;
@@ -573,7 +211,6 @@ watch(publications, (newPublications) => {
   font-weight: 600;
   margin-bottom: 1.5rem;
   color: #0056b3;
-  padding-bottom: 0.5rem;
 }
 .publication-list {
   display: flex;
@@ -586,14 +223,11 @@ watch(publications, (newPublications) => {
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  display: flex;
-  flex-direction: column;
-  height: auto;
   cursor: pointer;
 }
 .publication-item:hover {
-  transform: translateY(-8px) scale(1.01);
-  box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.12);
 }
 .pub-header {
   display: flex;
@@ -610,43 +244,28 @@ watch(publications, (newPublications) => {
 .pub-date {
   color: #666;
   font-size: 0.9rem;
-  white-space: nowrap;
-  background-color: #fff;
+  background: #fff;
   padding: 2px 8px;
   border-radius: 4px;
-  border: 1px solid #d1e7ff;
 }
 .pub-body {
   display: flex;
-  flex: 1;
-  padding-left: 10px;
+  padding: 1rem;
 }
 .publication-image {
-  flex: 0 0 400px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex: 0 0 300px;
+  max-width: 300px;
 }
 .publication-image img {
   width: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-.publication-item:hover .publication-image img {
-  transform: scale(1.03);
+  border-radius: 4px;
 }
 .publication-content {
   flex: 1;
-  padding: 1.5rem;
+  padding: 0 1.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
-}
-.publication-content p {
-  margin: 0;
-  line-height: 1.6;
+  gap: 0.8rem;
 }
 .pub-tags {
   display: flex;
@@ -654,217 +273,78 @@ watch(publications, (newPublications) => {
   gap: 0.5rem;
 }
 .keyword-tag {
-  display: inline-block;
   background-color: #e1f0fa;
   color: #2980b9;
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 0.85rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
 }
 .pub-links {
-  margin-top: 1rem;
   display: flex;
-  gap: 0.8rem;
-  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
 }
 .pub-link-btn {
-  padding: 4px 12px 4px 28px;
-  position: relative;
-  background-color: #e6f2ff;
-  color: #0056b3;
-  border-radius: 4px;
-  font-size: 0.85rem;
   text-decoration: none;
-  transition: all 0.2s ease;
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  background: #fff;
   border: 1px solid #d1e7ff;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+  border-radius: 4px;
+  color: #0056b3;
+  transition: 0.2s;
 }
 .pub-link-btn:hover {
-  background-color: #d1e7ff;
-  transform: translateY(-2px);
-}
-.pub-link-btn .link-icon {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.1em;
-}
-.star-count {
-  color: #ff9800;
-  font-weight: 600;
-  font-size: 0.8em;
-  margin-left: 6px;
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  min-width: 20px;
-}
-.star-count .fa-spinner {
-  color: #0056b3;
-  font-size: 0.9em;
-  animation: spin 1s linear infinite;
-}
-.star-count .fa-exclamation-circle {
-  color: #e74c3c;
-  font-size: 0.9em;
-}
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  background: #0056b3;
+  color: #fff;
 }
 .pub-details {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: all 0.5s ease;
+  transition: all 0.5s ease-out;
   padding: 0 1.5rem;
+  cursor: default; /* 详情内部鼠标设为默认，提示此处非整体点击收起区 */
 }
 .pub-details.show-details {
-  max-height: 3000px;
+  max-height: 4000px;
   opacity: 1;
-  padding: 1.5rem;
+  padding-bottom: 2rem;
 }
-.detail-section {
-  margin-bottom: 1.5rem;
-}
-.detail-section:last-child {
-  margin-bottom: 0;
-}
-.detail-section h4 {
-  color: #0056b3;
-  margin-bottom: 0.8rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-.detail-section p {
-  font-size: 0.98rem;
-  line-height: 1.7;
-  color: #333;
-}
-.detail-section ul {
-  padding-left: 1.8rem;
-  margin: 0;
-}
-.detail-section li {
-  font-size: 0.98rem;
-  line-height: 1.7;
-  margin-bottom: 0.5rem;
-  color: #333;
-}
-.detail-section li:last-child {
-  margin-bottom: 0;
-}
-.click-tip {
-  font-size: 0.85rem;
-  color: #888;
-  text-align: center;
-  margin-bottom: 0.5rem;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  opacity: 1;
-  visibility: visible;
-}
-.publication-item .pub-details.show-details + .click-tip {
-  opacity: 0;
-  visibility: hidden;
-  height: 0;
-  margin-bottom: 0;
-}
-
-/* ========================== */
-/* ✅ 统一美化：视频 + 轮播 */
-/* ========================== */
 .detail-media-section {
-  margin-bottom: 1.8rem;
+  margin: 1.5rem 0;
 }
-
-.video-wrapper {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 8px;
-  box-shadow: 0 2px 10px rgba(0, 86, 179, 0.06);
-  overflow: hidden;
-}
-.detail-video {
-  width: 100%;
-  display: block;
-  max-height: 320px;
-  object-fit: contain;
+.video-wrapper, .swiper-wrapper {
+  background: #fff;
+  padding: 10px;
   border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
-
-.swiper-wrapper {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 8px;
-  box-shadow: 0 2px 10px rgba(0, 86, 179, 0.06);
-  overflow: hidden;
-}
-.mySwiper {
-  border-radius: 8px;
-  overflow: hidden;
-}
-.swiper-img-container {
-  position: relative;
+.detail-video, .swiper-img-container img {
   width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fafbfc;
-}
-.swiper-img-container img {
-  width: 100%;
-  max-height: 320px;
+  max-height: 400px;
   object-fit: contain;
-  display: block;
+  border-radius: 4px;
 }
 .swiper-caption {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 10px 14px;
-  background: linear-gradient(to top, rgba(0,0,0,0.35), transparent);
+  bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,0.5);
   color: #fff;
-  border-radius: 0 0 8px 8px;
+  padding: 8px;
+  text-align: center;
 }
-.caption-title {
-  font-size: 0.95rem;
-  margin: 0;
-  font-weight: 500;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+.click-tip {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #999;
+  padding-bottom: 1rem;
 }
-
-/* 轮播指示器样式（柔和） */
-:deep(.swiper-pagination-bullet) {
-  background: rgba(0, 86, 179, 0.3);
-  opacity: 1;
-  width: 8px;
-  height: 8px;
+.show-details + .click-tip {
+  display: none;
 }
-:deep(.swiper-pagination-bullet-active) {
-  background: #0056b3;
-}
-
-/* 响应式 */
 @media (max-width: 768px) {
-  .pub-body {
-    flex-direction: column;
-  }
-  .publication-image {
-    flex: 0 0 200px;
-  }
-  .pub-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-  .swiper-img-container img,
-  .detail-video {
-    max-height: 240px;
-  }
+  .pub-body { flex-direction: column; }
+  .publication-image { max-width: 100%; flex: none; }
 }
 </style>

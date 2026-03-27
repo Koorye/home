@@ -80,6 +80,9 @@ export default {
       video: new URL('../../assets/publications/pcd/video.mp4', import.meta.url).href,
       detailImages: [
         {
+          url: new URL('../../assets/publications/pcd/poster.png', import.meta.url).href
+        },
+        {
           title: '机器人基础模型的伪相关问题',
           desc: '策略易将任务无关特征与动作关联，导致泛化下降。例如改变光照或把手位置会使 OpenVLA 性能下降 36% / 32%。(d) 为注意力可视化。',
           url: new URL('../../assets/publications/pcd/1.png', import.meta.url).href
@@ -171,6 +174,9 @@ export default {
       ],
       detailImages: [
         {
+          url: new URL('../../assets/publications/skip/poster.png', import.meta.url).href
+        },
+        {
           title: '与 SOTA 提示微调方法对比',
           desc: 'Skip Tuning 在训练时间、内存消耗、分类精度上全面优于现有方法。',
           url: new URL('../../assets/publications/skip/1.png', import.meta.url).href
@@ -257,6 +263,9 @@ export default {
         '在 11 个数据集上验证 DePT 可稳定提升各类基线方法。'
       ],
       detailImages: [
+        {
+          'url': new URL('../../assets/publications/dept/poster.png', import.meta.url).href
+        },
         {
           title: 'DePT 与 SOTA 提示微调方法对比',
           desc: '6 种方法加入 DePT 前后在基类/新类任务的精度对比（11 个数据集平均）。',

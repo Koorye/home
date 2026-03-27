@@ -80,6 +80,9 @@ export default {
       video: new URL('../../assets/publications/pcd/video.mp4', import.meta.url).href,
       detailImages: [
         {
+          url: new URL('../../assets/publications/pcd/poster.png', import.meta.url).href
+        },
+        {
           title: 'Spurious correlation issue in robotic foundation models',
           desc: 'Robot policies tend to spuriously correlate task-irrelevant features with actions, compromising their ability to generalize to unseen scenarios. As observed, changing the light position from (a) to (b) and the drawer handle position from (a) to (c) results in 36% and 32% drops in the performance of the baseline policy OpenVLA (Kim et al., 2024), respectively. (d) Attention map.',
           url: new URL('../../assets/publications/pcd/1.png', import.meta.url).href
@@ -171,6 +174,9 @@ export default {
       ],
       detailImages: [
         {
+          url: new URL('../../assets/publications/skip/poster.png', import.meta.url).href
+        },
+        {
           title: 'Comparison with state-of-the-art prompt tuning methods',
           desc: 'Comparison of our devised Skip Tuning with state-ofthe-art prompt tuning methods in terms of training time (seconds), memory cost (M), and classification accuracy (%) across base-tonew generalization, cross-dataset generalization, domain generalization, and few-shot learning benchmarks. × indicates the performance improvement over the state-of-the-art.',
           url: new URL('../../assets/publications/skip/1.png', import.meta.url).href
@@ -257,6 +263,9 @@ export default {
         'We perform experiments on 11 diverse datasets and show that DePT consistently enhances the performance of a broad spectrum of baseline methods.'
       ],
       detailImages: [
+        {
+          'url': new URL('../../assets/publications/dept/poster.png', import.meta.url).href
+        },
         {
           'title': 'Comparison of our DePT with state-of-the-art prompt tuning methods',
           'desc': 'Classification ACCs of six prompt tuning methods w/ or w/o our DePT framework on Base (or seen) and New (or unseen) tasks, averaged over 11 datasets in Table 3.',
