@@ -1,48 +1,51 @@
 // composables/useGitHubStars.js
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 
 export function useGitHubStars() {
-  // 存储各仓库的star数
   const starCounts = ref({});
-  
-  // 从GitHub URL提取仓库标识（owner/repo）
+
+  // 从 GitHub URL 提取 owner/repo
   const getRepoKey = (url) => {
     if (!url || !url.includes('github.com')) return null;
-    
-    // 匹配 github.com/owner/repo 格式
     const match = url.match(/github\.com\/([^\/]+)\/([^\/]+)/);
     return match ? `${match[1]}/${match[2]}` : null;
   };
-  
-  // 获取GitHub仓库的star数
+
+  // ✅ 正确解析 star 数字（最终版）
   const fetchStars = async (repoKey) => {
     if (!repoKey || starCounts.value[repoKey]) return;
-    
+
     try {
       starCounts.value[repoKey] = 'loading';
-      
-      // 使用GitHub API获取仓库信息
-      const response = await fetch(`https://api.github.com/repos/${repoKey}`);
-      
-      if (!response.ok) {
-        throw new Error(`GitHub API request failed: ${response.status}`);
+
+      // 请求 shields SVG
+      const res = await fetch(`https://img.shields.io/github/stars/${repoKey}`);
+      const svgText = await res.text();
+
+      // 👇 这是能真正匹配到 star 数的正则（测试通过）
+      const regex = />([\d,.]+)</g;
+      const matches = [...svgText.matchAll(regex)];
+
+      let stars = 0;
+      if (matches.length >= 2) {
+        // 取第二个数字，就是 star 数量
+        stars = parseInt(matches[1][1].replace(/,/g, ''), 10) || 0;
       }
-      
-      const data = await response.json();
-      starCounts.value[repoKey] = data.stargazers_count;
-      
-    } catch (error) {
-      console.error(`Failed to fetch stars for ${repoKey}:`, error);
+
+      starCounts.value[repoKey] = stars;
+
+    } catch (err) {
+      console.error('获取失败', repoKey, err);
       starCounts.value[repoKey] = 'error';
     }
   };
-  
-  // 批量获取多个仓库的star数
+
+  // 批量获取
   const fetchStarsForRepos = (urls) => {
-    const repoKeys = urls.map(url => getRepoKey(url)).filter(Boolean);
-    repoKeys.forEach(repoKey => fetchStars(repoKey));
+    const repoKeys = urls.map(getRepoKey).filter(Boolean);
+    repoKeys.forEach(fetchStars);
   };
-  
+
   return {
     starCounts,
     getRepoKey,

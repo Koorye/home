@@ -9,8 +9,8 @@
       <p class="banner-caption" v-html="t('home.banner')"></p>
       <div class="content-wrapper">
         <Introduction />
-        <Experience />
         <News />
+        <Experience />
         <Publications />
         <Awards />
         <Skills />

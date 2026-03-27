@@ -32,11 +32,6 @@ export default {
       description: 'It looks like a hummingbird but is actually a moth! Captured in Beijing, Oct. 2025',
     },
     {
-      image: new URL('../../assets/gallery/2025-10-29.jpg', import.meta.url).href,
-      title: '"Chestnut" Cat',
-      description: 'The cat named "Chestnut" at my dormitory, Chengdu, Oct. 2025',
-    },
-    {
       image: new URL('../../assets/gallery/2025-11-02.jpg', import.meta.url).href,
       title: 'Axolotl',
       description: 'My lovely axolotl at home, Chengdu, Nov. 2025',
@@ -45,11 +40,6 @@ export default {
       image: new URL('../../assets/gallery/2025-12-01.jpg', import.meta.url).href,
       title: 'Metasequoia',
       description: 'The Metasequoia tree in UESTC, Chengdu, Dec. 2025',
-    },
-    {
-      image: new URL('../../assets/gallery/2026-01-01.jpg', import.meta.url).href,
-      title: 'New Year Lantern Festival',
-      description: 'Lantern Festival, Hefei, Jan. 2026',
     },
     {
       image: new URL('../../assets/gallery/2026-01-01-2.jpg', import.meta.url).href,
@@ -70,6 +60,26 @@ export default {
       image: new URL('../../assets/gallery/2026-01-25.jpg', import.meta.url).href,
       title: 'Bee and Plum Blossom',
       description: 'A bee and plum blossoms, Chengdu, Jan. 2026',
+    },
+    {
+      image: new URL('../../assets/gallery/2026-03-01.jpg', import.meta.url).href,
+      title: 'Rape Flower Field',
+      description: 'A field of blooming rape flowers, Chengdu, Mar. 2026',
+    },
+    {
+      image: new URL('../../assets/gallery/2026-03-15.jpg', import.meta.url).href,
+      title: 'Ancient City',
+      description: 'The ancient city of Guannan, Dujiangyan, Chengdu, Mar. 2026',
+    },
+    {
+      image: new URL('../../assets/gallery/2026-03-22.jpg', import.meta.url).href,
+      title: 'Squirrel',
+      description: 'A squirrel enjoying a banana, Chengdu, Mar. 2026',
+    },
+    {
+      image: new URL('../../assets/gallery/2026-03-22-2.jpg', import.meta.url).href,
+      title: 'Red Panda',
+      description: 'A red panda walking, Chengdu, Mar. 2026',
     }
   ]
 }
