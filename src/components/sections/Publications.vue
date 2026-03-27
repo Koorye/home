@@ -8,7 +8,7 @@
         class="publication-item"
         @click="togglePublication(index)"
       >
-        <!-- 1. 顶部预览区域：点击切换展开/收起 -->
+        <!-- 预览区域 -->
         <div class="pub-header">
           <h3 v-html="pub.title"></h3>
           <span class="pub-date">{{ pub.date }}</span>
@@ -24,7 +24,6 @@
               <span v-for="tag in pub.tags" :key="tag" class="keyword-tag">{{ tag }}</span>
             </div>
             
-            <!-- 链接按钮：@click.stop 阻止折叠 -->
             <div v-if="pub.links" class="pub-links" @click.stop>
               <a 
                 v-for="(link, key) in pub.links" 
@@ -51,7 +50,7 @@
           </div>
         </div>
 
-        <!-- 2. 详情区域：@click.stop 确保点击内部任何地方都不会关闭 -->
+        <!-- 详情区域 -->
         <div 
           class="pub-details" 
           :class="{ 'show-details': expandedIndex === index }"
@@ -86,10 +85,10 @@
             </div>
             <div class="swiper-wrapper">
               <swiper
-                :modules="[Autoplay, Pagination]"
+                :modules="[Autoplay, Pagination, Navigation]" 
                 :loop="true"
-                :autoplay="{ delay: 3500, disableOnInteraction: true }"
-                :pagination="{ clickable: true }"
+                :autoplay="{ delay: 3500, disableOnInteraction: false }"
+                :navigation="true" 
                 class="mySwiper"
                 @swiper="(swiper) => onSwiperInit(index, swiper)"
               >
@@ -105,6 +104,7 @@
             </div>
           </div>
 
+          <!-- 摘要与贡献 -->
           <div class="detail-section">
             <h4>{{ t('publications.buttons.abstract') }}</h4>
             <p v-html="pub.abstract"></p>
@@ -131,11 +131,12 @@ import { useGitHubStars } from '@/composables/useGitHubStars';
 import { useI18n } from 'vue-i18n';
 import { useLocaleData } from '@/composables/useLocaleData';
 
-// Swiper 相关
+// Swiper 核心及组件
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Autoplay, Pagination } from 'swiper/modules';
+import 'swiper/css/navigation'; // 1. 引入导航样式
+import { Autoplay, Pagination, Navigation } from 'swiper/modules'; // 2. 引入 Navigation 模块
 
 const { t } = useI18n();
 const publications = useLocaleData('publications', 'data');
@@ -143,38 +144,34 @@ const { starCounts, getRepoKey, fetchStarsForRepos } = useGitHubStars();
 
 const expandedIndex = ref(-1);
 const videoRefs = ref([]);
-const swiperInstances = reactive({}); // 存储每个列表项的 Swiper 实例
+const swiperInstances = reactive({}); 
 
-// 捕获 Swiper 实例
 const onSwiperInit = (index, swiper) => {
   swiperInstances[index] = swiper;
 };
 
 const togglePublication = async (index) => {
-  const wasExpanded = expandedIndex.value === index;
-
-  if (wasExpanded) {
+  const isClosing = expandedIndex.value === index;
+  if (isClosing) {
     expandedIndex.value = -1;
     return;
   }
 
   expandedIndex.value = index;
-
-  // 等待 DOM 完成渲染展开动画和 v-if 逻辑
   await nextTick();
 
-  // 1. 重置并播放视频
+  // 视频重置
   const video = videoRefs.value[index];
   if (video) {
     video.currentTime = 0;
     video.play().catch(() => {});
   }
 
-  // 2. 强制轮播图回到第一张 (slideToLoop 是循环模式下最稳妥的方法)
+  // 轮播图强制回首页
   const swiper = swiperInstances[index];
   if (swiper) {
-    swiper.slideToLoop(0, 0); // (索引0, 速度0ms即瞬间跳转)
-    if (swiper.autoplay && swiper.autoplay.running) {
+    swiper.slideToLoop(0, 0); 
+    if (swiper.autoplay) {
       swiper.autoplay.stop();
       swiper.autoplay.start();
     }
@@ -201,150 +198,77 @@ watch(publications, (newPubs) => {
 </script>
 
 <style scoped>
-.section {
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid #eaeaea;
+/* 基础样式保持不变 */
+.section { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid #eaeaea; }
+.section h2 { font-size: 1.8rem; font-weight: 600; margin-bottom: 1.5rem; color: #0056b3; }
+.publication-list { display: flex; flex-direction: column; gap: 2rem; }
+.publication-item { background-color: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.4s ease; cursor: pointer; }
+.publication-item:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.12); }
+.pub-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; background-color: #eff4ff; }
+.pub-header h3 { margin: 0; font-size: 1.1rem; color: #0056b3; }
+.pub-date { color: #666; font-size: 0.9rem; background: #fff; padding: 2px 8px; border-radius: 4px; border: 1px solid #d1e7ff;}
+.pub-body { display: flex; padding: 1rem; }
+.publication-image { flex: 0 0 320px; max-width: 320px; display: flex; align-items: center;}
+.publication-image img { width: 100%; border-radius: 4px; object-fit: cover; }
+.publication-content { flex: 1; padding: 0 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; justify-content: center;}
+.pub-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.keyword-tag { background-color: #e1f0fa; color: #2980b9; padding: 3px 8px; border-radius: 4px; font-size: 0.8rem; }
+.pub-links { display: flex; gap: 0.6rem; margin-top: 0.5rem; flex-wrap: wrap; }
+.pub-link-btn { text-decoration: none; font-size: 0.85rem; padding: 4px 12px 4px 28px; background: #e6f2ff; border: 1px solid #d1e7ff; border-radius: 4px; color: #0056b3; transition: 0.2s; position: relative; display: inline-flex; align-items: center; }
+.pub-link-btn:hover { background: #d1e7ff; transform: translateY(-2px); }
+.pub-link-btn .link-icon { position: absolute; left: 8px; }
+
+/* 详情动画 */
+.pub-details { max-height: 0; overflow: hidden; opacity: 0; transition: all 0.5s ease; padding: 0 1.5rem; cursor: default; }
+.pub-details.show-details { max-height: 5000px; opacity: 1; padding-bottom: 2rem; }
+
+/* 媒体区域 */
+.detail-media-section { margin: 1.5rem 0; }
+.detail-section h4 { color: #0056b3; margin-bottom: 0.8rem; font-size: 1.1rem; border-left: 4px solid #0056b3; padding-left: 10px; }
+.video-wrapper, .swiper-wrapper { background: #fff; padding: 10px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0, 86, 179, 0.08); overflow: hidden; }
+.detail-video { width: 100%; max-height: 450px; background: #000; border-radius: 6px; }
+
+/* Swiper 样式定制 */
+.swiper-img-container { width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: #fafafa; }
+.swiper-img-container img { max-width: 100%; max-height: 450px; object-fit: contain; }
+.swiper-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: #fff; padding: 20px 10px 10px; text-align: center; }
+
+/* 3. 自定义左右按钮样式 */
+:deep(.swiper-button-next),
+:deep(.swiper-button-prev) {
+  color: #0056b3; /* 改为你的主题色 */
+  background: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
 }
-.section h2 {
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  color: #0056b3;
+
+:deep(.swiper-button-next):after,
+:deep(.swiper-button-prev):after {
+  font-size: 16px; /* 缩小箭头 */
+  font-weight: bold;
 }
-.publication-list {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-.publication-item {
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: pointer;
-}
-.publication-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0,0,0,0.12);
-}
-.pub-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  background-color: #eff4ff;
-}
-.pub-header h3 {
-  margin: 0;
-  font-size: 1.1rem;
-  color: #0056b3;
-}
-.pub-date {
-  color: #666;
-  font-size: 0.9rem;
-  background: #fff;
-  padding: 2px 8px;
-  border-radius: 4px;
-}
-.pub-body {
-  display: flex;
-  padding: 1rem;
-}
-.publication-image {
-  flex: 0 0 300px;
-  max-width: 300px;
-}
-.publication-image img {
-  width: 100%;
-  border-radius: 4px;
-}
-.publication-content {
-  flex: 1;
-  padding: 0 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-.pub-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-.keyword-tag {
-  background-color: #e1f0fa;
-  color: #2980b9;
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-size: 0.8rem;
-}
-.pub-links {
-  display: flex;
-  gap: 0.6rem;
-  margin-top: 0.5rem;
-}
-.pub-link-btn {
-  text-decoration: none;
-  font-size: 0.85rem;
-  padding: 4px 10px;
-  background: #fff;
-  border: 1px solid #d1e7ff;
-  border-radius: 4px;
-  color: #0056b3;
-  transition: 0.2s;
-}
-.pub-link-btn:hover {
+
+:deep(.swiper-button-next):hover,
+:deep(.swiper-button-prev):hover {
   background: #0056b3;
   color: #fff;
 }
-.pub-details {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: all 0.5s ease-out;
-  padding: 0 1.5rem;
-  cursor: default; /* 详情内部鼠标设为默认，提示此处非整体点击收起区 */
+
+/* 指示点颜色 */
+:deep(.swiper-pagination-bullet-active) {
+  background: #0056b3;
 }
-.pub-details.show-details {
-  max-height: 4000px;
-  opacity: 1;
-  padding-bottom: 2rem;
-}
-.detail-media-section {
-  margin: 1.5rem 0;
-}
-.video-wrapper, .swiper-wrapper {
-  background: #fff;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-.detail-video, .swiper-img-container img {
-  width: 100%;
-  max-height: 400px;
-  object-fit: contain;
-  border-radius: 4px;
-}
-.swiper-caption {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  background: rgba(0,0,0,0.5);
-  color: #fff;
-  padding: 8px;
-  text-align: center;
-}
-.click-tip {
-  text-align: center;
-  font-size: 0.8rem;
-  color: #999;
-  padding-bottom: 1rem;
-}
-.show-details + .click-tip {
-  display: none;
-}
+
+.click-tip { text-align: center; font-size: 0.85rem; color: #aaa; margin: 10px 0; transition: 0.3s; }
+.show-details + .click-tip { opacity: 0; height: 0; margin: 0; overflow: hidden; }
+
 @media (max-width: 768px) {
   .pub-body { flex-direction: column; }
   .publication-image { max-width: 100%; flex: none; }
+  .publication-content { padding: 1rem 0; }
+  :deep(.swiper-button-next), :deep(.swiper-button-prev) { display: none; } /* 移动端隐藏按钮，靠滑动 */
 }
 </style>
