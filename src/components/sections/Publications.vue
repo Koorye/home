@@ -217,6 +217,7 @@ watch(publications, (newPubs) => {
 .pub-link-btn { text-decoration: none; font-size: 0.85rem; padding: 4px 12px 4px 28px; background: #e6f2ff; border: 1px solid #d1e7ff; border-radius: 4px; color: #0056b3; transition: 0.2s; position: relative; display: inline-flex; align-items: center; }
 .pub-link-btn:hover { background: #d1e7ff; transform: translateY(-2px); }
 .pub-link-btn .link-icon { position: absolute; left: 8px; }
+.star-count { margin-left: 8px; color: #edab02; display: flex; align-items: center; }
 
 /* 详情动画 */
 .pub-details { max-height: 0; overflow: hidden; opacity: 0; transition: all 0.5s ease; padding: 0 1.5rem; cursor: default; }
