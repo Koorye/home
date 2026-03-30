@@ -130,6 +130,9 @@ export default {
       video: new URL('../../assets/publications/inspire/video.mp4', import.meta.url).href,
       detailImages: [
         {
+          url: new URL('../../assets/publications/inspire/poster.png', import.meta.url).href
+        },
+        {
           title: 'Spurious correlation issue in VLAs',
           desc: '(a) VLAs typically predict actions relying on Spurious Correlations learned by the direct observation-to-action mapping mechanism. (b) The core idea of our InSpire method that tackles spurious correlations by boosting the spatial reasoning capabilities of VLAs. (c) InSpire can be used as a plugin to improve state-of-the-art VLAs on both seen and unseen tasks across simulation and real-world environments. For illustrative purposes, we omit the tokens of the language instruction “pick up the black bowl next to the plate and place it on the plate”',
           url: new URL('../../assets/publications/inspire/1.png', import.meta.url).href

@@ -130,6 +130,9 @@ export default {
       video: new URL('../../assets/publications/inspire/video.mp4', import.meta.url).href,
       detailImages: [
         {
+          url: new URL('../../assets/publications/inspire/poster.png', import.meta.url).href
+        },
+        {
           title: 'VLA 模型的伪相关问题',
           desc: '(a) 传统 VLA 依赖直接观测-动作映射，易学习伪相关。(b) InSpire 通过增强空间推理缓解伪相关。(c) InSpire 可插件式提升 SOTA 模型。',
           url: new URL('../../assets/publications/inspire/1.png', import.meta.url).href
