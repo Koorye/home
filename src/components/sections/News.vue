@@ -14,11 +14,14 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img :src="item.icon" alt="Media Icon" class="media-icon">
-          <div class="media-text">
-            <div class="media-title">{{ item.title }}</div>
-            <div class="media-desc">{{ item.desc }}</div>
+          <div class="media-content">
+            <img :src="item.icon" alt="Media Icon" class="media-icon">
+            <div class="media-text">
+              <div class="media-title">{{ item.title }}</div>
+              <div class="media-desc">{{ item.desc }}</div>
+            </div>
           </div>
+          <div class="click-more">{{ t('news.clickMore') }}</div>
         </a>
       </div>
     </div>
@@ -78,24 +81,51 @@ const mediaReports = useLocaleData('news', 'reports');
   gap: 0.8rem;
 }
 
+/* ====================================
+   修改后的媒体卡片样式
+==================================== */
 .media-card {
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   background: #f8f9fa;
   border-radius: 8px;
   border-left: 3px solid #0056b3;
+  
+  /* 关键修改：转为 flex 纵向布局 */
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  flex-direction: column;
+  /* ======================== */
+
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+  
+  /* 移除原有的 align-items: center (如果它是为了横向居中) */
+  /* 如果需要内容横向居中，可以使用 align-items: stretch; */
 }
 
 .media-card:hover {
   transform: translateY(-2px);
   background: #eef5ff;
+}
+
+.media-content {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  /* 确保内容区域不会压缩，保持在顶部 */
+  flex-shrink: 0; 
+}
+
+.click-more {
+  font-size: 0.8rem;
+  color: #aaa;
+  text-align: center;
+  
+  /* 关键修改：自动撑开顶部间距，将其挤到底部 */
+  margin-top: auto; 
+  padding-top: 0.8rem; /* 增加一点与上方文字的间距 */
 }
 
 /* 更小的图标 */

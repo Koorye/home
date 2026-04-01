@@ -1,6 +1,7 @@
 export default {
   'title': 'News',
   'reportTitle': 'Thanks for the media reports about our research:',
+  'clickMore': 'Click to read more',
   'reports': [
       {
         icon: new URL('../../assets/medias/modelscope.png', import.meta.url).href,

@@ -1,6 +1,7 @@
 export default {
   'title': '最新动态',
   'reportTitle': '感谢媒体对我们研究的报道：',
+  'clickMore': '点击阅读全文',
   'reports': [
     {
       icon: new URL('../../assets/medias/modelscope.png', import.meta.url).href,
