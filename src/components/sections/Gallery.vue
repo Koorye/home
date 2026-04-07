@@ -16,7 +16,20 @@
         >
         <div class="caption">
           <h3>{{ photo.title }}</h3>
-          <p>{{ photo.description }}</p>
+          
+          <!-- 详情描述 -->
+          <p class="desc" v-if="photo.description">{{ photo.description }}</p>
+
+          <!-- 时间 + 位置 一行优雅展示 -->
+          <div class="meta" v-if="photo.time || photo.location">
+            <span class="time" v-if="photo.time">
+              🕒 {{ photo.time }}
+            </span>
+            <span class="location" v-if="photo.location">
+              📍 {{ photo.location }}
+            </span>
+          </div>
+
         </div>
       </div>
     </div>
@@ -27,7 +40,6 @@
 import { useI18n } from 'vue-i18n';
 import { useLocaleData } from '@/composables/useLocaleData';
 
-// 🔥 已删除所有 Swiper 相关代码
 const { t } = useI18n();
 const galleryPhotos = useLocaleData('gallery', 'data');
 </script>
@@ -54,14 +66,12 @@ const galleryPhotos = useLocaleData('gallery', 'data');
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-
-  /* 原生 CSS 瀑布流（自动多列、自适应） */
   column-count: 3;
   column-gap: 1.2rem;
 }
 
 .masonry-item {
-  break-inside: avoid; /* 防止卡片被截断 */
+  break-inside: avoid;
   margin-bottom: 1.2rem;
   background: #fff;
   border-radius: 12px;
@@ -88,16 +98,35 @@ const galleryPhotos = useLocaleData('gallery', 'data');
 }
 
 .caption h3 {
-  margin: 0 0 0.4rem;
+  margin: 0 0 0.6rem;
   font-size: 1.1rem;
   color: #222;
+  font-weight: 600;
 }
 
-.caption p {
+/* 时间 + 位置 信息行 */
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.time, .location {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  white-space: nowrap;
+}
+
+/* 描述文字 */
+.desc {
   margin: 0;
   font-size: 0.9rem;
   color: #666;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 /* ======================
