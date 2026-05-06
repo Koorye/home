@@ -154,6 +154,20 @@ export default {
       time: 'March 2026',
       location: 'Chengdu',
       description: 'Leisurely ducks in front of the library',
+    },
+    {
+      image: new URL('../../assets/gallery/2026-05-02.jpg', import.meta.url).href,
+      title: 'Sky Lantern',
+      time: 'May 2026',
+      location: 'Xiangyang',
+      description: 'Sky lanterns lighting up the night sky',
+    },
+    {
+      image: new URL('../../assets/gallery/2026-05-03.jpg', import.meta.url).href,
+      title: 'Iron Flower Beating',
+      time: 'May 2026',
+      location: 'Xiangyang',
+      description: 'Traditional iron flower beating performance',
     }
   ]
 }

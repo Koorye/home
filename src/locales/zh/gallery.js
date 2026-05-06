@@ -154,6 +154,20 @@ export default {
       time: '2026年3月',
       location: '成都',
       description: '图书馆前悠闲的鸭子',
+    },
+    {
+      image: new URL('../../assets/gallery/2026-05-02.jpg', import.meta.url).href,
+      title: '孔明灯',
+      time: '2026年5月',
+      location: '襄阳',
+      description: '孔明灯点亮夜空',
+    },
+    {
+      image: new URL('../../assets/gallery/2026-05-03.jpg', import.meta.url).href,
+      title: '铁花飞舞',
+      time: '2026年5月',
+      location: '襄阳',
+      description: '传统的铁花飞舞表演',
     }
   ]
 }
