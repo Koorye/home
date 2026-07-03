@@ -2,12 +2,20 @@ export default {
   'title': '教育&工作经历',
   'data': [
     {
+      title: '具身智能研究员',
+      organization: '北京智源人工智能研究院',
+      link: 'https://www.baai.ac.cn/',
+      date: '2026 - 至今',
+      logo: new URL('../../assets/icons/baai.png', import.meta.url).href,
+      description: '探索 VLA 的高效学习范式，设计具有层次技能标签的大规模双臂多本体机器人数据集',
+    },
+    {
       title: '研究实习生',
       organization: '北京智源人工智能研究院',
       link: 'https://www.baai.ac.cn/',
-      date: '2025',
+      date: '2025 - 2026',
       logo: new URL('../../assets/icons/baai.png', import.meta.url).href,
-      description: '探索 VLA 的高效学习范式，设计具有层次技能标签的大规模双臂多本体机器人数据集',
+      description: '从事具身智能与视觉-语言-动作模型相关研究',
     },
     {
       title: '计算机科学与技术硕士',

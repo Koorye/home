@@ -82,6 +82,34 @@ const awardsList = useLocaleData('awards', 'data')
 /* 响应式适配 */
 @media (max-width: 768px) {
   .awards-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .award-item {
+    padding: 0.6rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .award-icon {
+    font-size: 1.2rem;
+    margin-right: 0;
+    margin-bottom: 0.3rem;
+  }
+
+  .award-content h3 {
+    font-size: 0.88rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .award-content p {
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .awards-grid {
     grid-template-columns: 1fr;
   }
 }

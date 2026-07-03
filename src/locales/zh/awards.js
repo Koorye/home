@@ -1,6 +1,8 @@
 export default {
   'title': '获奖情况',
   'data': [
+    {
+      icon: '🎓', title: 'CCF YEF 2026 最佳学术报告奖（硕士组）', issuer: '中国计算机学会', year: '2026'},
     { icon: '🎓', title: '四川省优秀毕业生', issuer: '四川省教育厅', year: '2026' },
     { icon: '💰', title: '北方自动控制专项奖学金', issuer: '北方自动控制技术研究所', year: '2026' },
     { icon: '🎓', title: '优秀研究生', issuer: '电子科技大学', year: '2025' },

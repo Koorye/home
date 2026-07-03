@@ -60,20 +60,24 @@ export default {
   ],
   'data': [
     {
+      date: 'Jul. 2026',
+      content: 'Our <span class="highlight-red">RoboCOIN</span> dataset has reached <span class="highlight-red">7,000,000+</span> total downloads!'
+    },
+    {
+      date: 'Jun. 2026',
+      content: 'I officially joined <span class="highlight-red">Beijing Academy of Artificial Intelligence (BAAI)</span> as an <span class="highlight-red">Embodied Intelligence Researcher</span>!'
+    },
+    {
+      date: 'Jun. 2026',
+      content: 'I received my <span class="highlight-red">Master\'s degree</span> from <span class="highlight-red">UESTC</span>!'
+    },
+    {
+      date: 'May. 2026',
+      content: 'I was invited to the <span class="highlight-red">CCF Young Elite Forum 2026 (YEF 2026)</span> and owned the <span class="highlight-red">Best Presentation Award in the Master\'s Group</span>! <br/>'
+    },
+    {
       date: 'Mar. 2026',
       content: 'Our <span class="highlight-red">RoboCOIN</span> dataset has been rated as a <span class="highlight-red">Top-10 Dataset in 2025</span> by ModelScope and CCF TCIR in the EAI-100 project! <br/>'
-    },
-    {
-      'date': 'Mar. 2026',
-      'content': 'I was invited to serve as a reviewer for <span class="highlight-red">BMVC 2026</span>!'
-    },
-    {
-      date: 'Mar. 2026',
-      content: 'Our <span class="highlight-red">RoboCOIN</span> dataset has total downloads of <span class="highlight-red">4,000,000</span>!'
-    },
-    {
-      date: 'Feb. 2026',
-      content: 'Our paper <span class="highlight-red">InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning</span> has been accepted by <span class="highlight-red">ICRA 2026</span>!'
     },
   ]
 }

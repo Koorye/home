@@ -60,20 +60,24 @@ export default {
   ],
   'data': [
     {
+      date: '2026年7月',
+      content: '我们的 <span class="highlight-red">RoboCOIN</span> 数据集下载量已达 <span class="highlight-red">7,000,000+</span>！'
+    },
+    {
+      date: '2026年6月',
+      content: '我正式加入 <span class="highlight-red">北京智源人工智能研究院（BAAI）</span>，担任 <span class="highlight-red">具身智能研究员</span>！'
+    },
+    {
+      date: '2026年6月',
+      content: '我获得了 <span class="highlight-red">电子科技大学</span> 的 <span class="highlight-red">硕士学位</span>！'
+    },
+    {
+      date: '2026年5月',
+      content: '我受邀参加了 <span class="highlight-red">CCF 2026 年度青年精英论坛（YEF 2026）</span>，并荣获 <span class="highlight-red">硕士组最佳报告奖</span>！'
+    },
+    {
       date: '2026年3月',
       content: '我们的 <span class="highlight-red">RoboCOIN</span> 数据集被 ModelScope 和 CCF 智能机器人专委会评为 EAI-100 项目中 <span class="highlight-red">2025 年度十大数据集</span>！'
-    },
-    {
-      'date': '2026年3月',
-      'content': '我受邀担任 <span class="highlight-red">BMVC 2026</span> 的审稿人！'
-    },
-    {
-      date: '2026年3月',
-      content: '我们的 <span class="highlight-red">RoboCOIN</span> 数据集下载量已达 <span class="highlight-red">4,000,000</span>！'
-    },
-    {
-      date: '2026年2月',
-      content: '我们的论文 <span class="highlight-red">InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning</span> 的被 <span class="highlight-red">ICRA 2026</span> 接收！'
     },
   ]
 }

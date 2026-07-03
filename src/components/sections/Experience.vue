@@ -123,20 +123,52 @@ const experiences = useLocaleData('experience', 'data');
   }
   
   .timeline-item {
-    flex-direction: column;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    gap: 0.6rem;
   }
   
   .timeline-marker {
     margin-right: 0;
-    margin-bottom: 10px;
-    flex-direction: row;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  
+  .logo {
+    width: 56px;
+    padding: 2px;
   }
   
   .timeline-line {
-    width: 100%;
-    height: 2px;
-    margin-top: 0;
-    margin-left: 10px;
+    display: none;
+  }
+
+  .timeline-content {
+    padding-bottom: 0;
+  }
+
+  .timeline-content h3 {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .timeline-date {
+    font-size: 0.82rem;
+    display: block;
+  }
+
+  .timeline-content p {
+    font-size: 0.88rem;
+    margin-top: 0.2rem;
+  }
+
+  .exp-details {
+    margin-top: 0.3rem;
+  }
+
+  .p-close {
+    font-size: 0.88rem;
+    margin-bottom: 0.2rem;
   }
 }
 </style>

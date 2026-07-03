@@ -269,7 +269,34 @@ watch(publications, (newPubs) => {
 @media (max-width: 768px) {
   .pub-body { flex-direction: column; }
   .publication-image { max-width: 100%; flex: none; }
-  .publication-content { padding: 1rem 0; }
-  :deep(.swiper-button-next), :deep(.swiper-button-prev) { display: none; } /* 移动端隐藏按钮，靠滑动 */
+  .publication-content { padding: 0.6rem 0; }
+
+  .pub-header { padding: 0.7rem 0.8rem; }
+  .pub-header h3 { font-size: 1rem; }
+  .pub-date { font-size: 0.8rem; }
+
+  .publication-item { gap: 0; }
+  .publication-content p { font-size: 0.9rem; }
+
+  .pub-tags { gap: 0.3rem; }
+  .keyword-tag { font-size: 0.75rem; padding: 2px 6px; }
+
+  .pub-links { gap: 0.4rem; }
+  .pub-link-btn { font-size: 0.82rem; padding: 3px 10px 3px 24px; }
+
+  .detail-section h4 { font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .detail-section p { font-size: 0.88rem; }
+  .detail-section li p { font-size: 0.88rem; }
+  .detail-video { max-height: 220px; }
+  .swiper-img-container img { max-height: 220px; }
+
+  .pub-details { padding: 0 0.6rem; }
+  .pub-details.show-details { padding-bottom: 1rem; }
+  .detail-media-section { margin: 0.8rem 0; }
+  .video-wrapper, .swiper-wrapper { padding: 6px; border-radius: 8px; }
+  .swiper-caption { padding: 12px 8px 6px; }
+  .swiper-caption .caption-title { font-size: 0.8rem; }
+
+  :deep(.swiper-button-next), :deep(.swiper-button-prev) { display: none; }
 }
 </style>

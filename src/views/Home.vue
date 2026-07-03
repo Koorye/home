@@ -85,7 +85,6 @@ onUnmounted(() => {
   min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f5f7fa;
-  overflow: hidden;
 }
 
 .content {
@@ -180,10 +179,21 @@ onUnmounted(() => {
     margin-left: 0;
     height: auto;
     overflow-y: visible;
+    padding-top: 48px;
   }
   
   .content-wrapper {
-    padding: 1.5rem;
+    padding: 1rem;
+  }
+
+  .content-wrapper :deep(.section) {
+    margin-bottom: 1.2rem;
+    padding-bottom: 1.2rem;
+  }
+
+  .content-wrapper :deep(.section h2) {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
   }
   
   .content-header h1 {
@@ -193,7 +203,7 @@ onUnmounted(() => {
   
   /* Banner 移动端适配 */
   .banner-container {
-    max-height: 200px;
+    max-height: 150px;
     transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .banner {

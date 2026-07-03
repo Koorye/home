@@ -2,12 +2,20 @@ export default {
   'title': 'Experience',
   'data': [
     {
+      title: 'Embodied Intelligence Researcher',
+      organization: 'Beijing Academy of Artificial Intelligence (BAAI)',
+      link: 'https://www.baai.ac.cn/',
+      date: '2026 - Present',
+      logo: new URL('../../assets/icons/baai.png', import.meta.url).href,
+      description: 'Exploring efficient learning paradigms of VLA, designing large-scale bimanual dataset with hierarchical skill labels',
+    },
+    {
       title: 'Research Intern',
       organization: 'Beijing Academy of Artificial Intelligence (BAAI)',
       link: 'https://www.baai.ac.cn/',
-      date: '2025',
+      date: '2025 - 2026',
       logo: new URL('../../assets/icons/baai.png', import.meta.url).href,
-      description: 'Exploring efficient learning paradigms of VLA, designing large-scale bimanual dataset with hierarchical skill labels',
+      description: 'Conducted research on embodied AI and vision-language-action models',
     },
     {
       title: 'Master of Computer Science and Technology',

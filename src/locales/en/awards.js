@@ -1,6 +1,7 @@
 export default {
   'title': 'Awards',
   'data': [
+    { icon: '🎓', title: 'CCF YEF 2026 Best Academic Presentation Award (Master\'s Group)', issuer: 'China Computer Federation', year: '2026' },
     { icon: '🎓', title: 'Outstanding Graduate of Sichuan Province', issuer: 'Education Department of Sichuan', year: '2026' },
     { icon: '💰', title: 'Northern Automatic Control Special Scholarship', issuer: 'North Automatic Control Technology Research Institute', year: '2026' },
     { icon: '🎓', title: 'Outstanding Graduate Student', issuer: 'University of Electronic Science and Technology of China', year: '2025' },

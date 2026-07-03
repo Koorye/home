@@ -144,13 +144,42 @@ const getSkillLevelClass = (level) => {
 /* 响应式适配 */
 @media (max-width: 768px) {
   .skills-container {
-    flex-direction: column;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
   }
   
   .skill-category {
     width: 100%;
     min-width: unset;
+    padding: 0.8rem;
+  }
+
+  .skill-category h3 {
+    font-size: 0.95rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .skills-list {
+    gap: 0.6rem;
+  }
+
+  .skill-name {
+    font-size: 0.85rem;
+  }
+
+  .skill-level {
+    font-size: 0.78rem;
+  }
+
+  .skill-bar {
+    height: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-container {
+    grid-template-columns: 1fr;
   }
 }
 </style>

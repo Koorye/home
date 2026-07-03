@@ -121,4 +121,21 @@ const introductionData = useLocaleData('introduction', 'data');
 .highlight-link:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+  .content-header {
+    padding-bottom: 0.8rem;
+  }
+
+  .content-header h1 {
+    font-size: 2.5rem;
+    margin-top: 0;
+    margin-bottom: 0.3rem;
+  }
+
+  .section p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+}
 </style>
