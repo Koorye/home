@@ -16,7 +16,7 @@ export default {
       title: 'RoboCOIN: An Open-Sourced Bimanual Robotic Data Collection for Integrated Manipulation',
       date: '2025年11月',
       image: new URL('../../assets/publications/robocoin.png', import.meta.url).href,
-      description: '开源大规模双手操作机器人数据集，包含 <span class="highlight-red">15 个机器人平台</span> 与 <span class="highlight-red">18 万+ 演示数据</span>，联合 <span class="highlight-red">20 家机构</span> 共同构建',
+      description: '开源大规模双手操作机器人数据集，包含 <span class="highlight-red">15 个机器人平台</span> 与 <span class="highlight-red">18 万+ 演示数据</span>，联合 <span class="highlight-red">20 家机构</span> 共同构建；已被 <span class="highlight-red">360+</span> 家机构使用，下载量超 <span class="highlight-red">5,000 万</span>，并作为<span class="highlight-red">阿里 Qwen-RobotManip</span>、<span class="highlight-red">达摩院 RynnValue</span>、<span class="highlight-red">阿里云 PAIWorld</span>、<span class="highlight-red">北大 LDA-1B</span> 等模型的训练集',
       tags: ['机器人学', '数据集'],
       links: {
         project: 'https://flagopen.github.io/RoboCOIN/',
@@ -117,8 +117,8 @@ export default {
       tags: ['机器人学', '视觉-语言-动作模型', '空间推理'],
       links: {
         project: 'https://koorye.github.io/Inspire',
-        arxiv: 'https://arxiv.org/abs/2412.11509',
-        pdf: 'https://arxiv.org/pdf/2412.11509',
+        arxiv: 'https://arxiv.org/abs/2505.13888',
+        pdf: 'https://arxiv.org/pdf/2505.13888',
         code: 'https://github.com/Koorye/Inspire/'
       },
       abstract: '视觉-语言-动作模型（VLA）利用预训练视觉-语言模型将指令与观测映射到底层动作，具有构建通用机器人系统的潜力。尽管取得进展，现有 VLA 易学习任务无关的伪相关，限制泛化能力。为此，我们提出 **InSpire（内在空间推理）**，通过增强 VLA 的空间推理能力缓解伪相关影响。具体方法：在语言指令前加入空间问题“目标物体相对于机器人的方向？”，并让模型输出方向答案（左/右/上/下/前/后/已抓取），与动作预测联合监督。InSpire 可作为插件增强现有自回归 VLA，无需额外数据或其他模型。仿真与现实实验均验证其有效性。',
@@ -165,6 +165,7 @@ export default {
       description: '无参数自适应方法，精度提升 <span class="highlight-red">+1.04%</span>，速度提升 <span class="highlight-red">15倍</span>，内存效率提升 <span class="highlight-red">6.4倍</span>',
       tags: ['视觉-语言模型', '迁移学习', '高效训练'],
       links: {
+        project: 'https://koorye.github.io/SkipTuning/',
         arxiv: 'https://arxiv.org/abs/2412.11509',
         pdf: 'https://arxiv.org/pdf/2412.11509',
         code: 'https://github.com/Koorye/SkipTuning/'
@@ -255,6 +256,7 @@ export default {
       description: '即插即用，在各类提示微调基线上稳定带来 <span class="highlight-red">+0.67%~2.65%</span> 提升',
       tags: ['视觉-语言模型', '迁移学习', '提示微调'],
       links: {
+        project: 'https://koorye.github.io/DePT/',
         arxiv: 'https://arxiv.org/abs/2309.07439',
         pdf: 'https://arxiv.org/pdf/2309.07439',
         code: 'https://github.com/Koorye/DePT/'

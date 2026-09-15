@@ -60,8 +60,12 @@ export default {
   ],
   'data': [
     {
-      date: 'Jul. 2026',
-      content: 'Our <span class="highlight-red">RoboCOIN</span> dataset has reached <span class="highlight-red">7,000,000+</span> total downloads!'
+      date: 'Sep. 2026',
+      content: 'My papers have received over <span class="highlight-red">300</span> citations!'
+    },
+    {
+      date: 'Sep. 2026',
+      content: 'Our <span class="highlight-red">RoboCOIN</span> dataset has surpassed <span class="highlight-red">50,000,000</span> total downloads!'
     },
     {
       date: 'Jun. 2026',

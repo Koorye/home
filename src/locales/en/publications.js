@@ -16,7 +16,7 @@ export default {
       title: 'RoboCOIN: An Open-Sourced Bimanual Robotic Data Collection for Integrated Manipulation',
       date: 'Nov. 2025',
       image: new URL('../../assets/publications/robocoin.png', import.meta.url).href,
-      description: 'Open-sourced large-scale bimanual robotic dataset with <span class="highlight-red">15 robotic platforms</span> and <span class="highlight-red">180K+ demonstrations</span>, collaborated with <span class="highlight-red">20 institutions</span>',
+      description: 'Open-sourced large-scale bimanual robotic dataset with <span class="highlight-red">15 robotic platforms</span> and <span class="highlight-red">180K+ demonstrations</span>, built with <span class="highlight-red">20 institutions</span>; used by <span class="highlight-red">360+</span> institutions with over <span class="highlight-red">50,000,000</span> downloads, serving as training data for models such as <span class="highlight-red">Alibaba Qwen-RobotManip</span>, <span class="highlight-red">DAMO RynnValue</span>, <span class="highlight-red">Alibaba Cloud PAIWorld</span>, and <span class="highlight-red">PKU LDA-1B</span>',
       tags: ['Robotics', 'Dataset'],
       links: {
         project: 'https://flagopen.github.io/RoboCOIN/',
@@ -117,8 +117,8 @@ export default {
       tags: ['Robotics', 'Vision-Language-Action Models', 'Spatial Reasoning'],
       links: {
         project: 'https://koorye.github.io/Inspire',
-        arxiv: 'https://arxiv.org/abs/2412.11509',
-        pdf: 'https://arxiv.org/pdf/2412.11509',
+        arxiv: 'https://arxiv.org/abs/2505.13888',
+        pdf: 'https://arxiv.org/pdf/2505.13888',
         code: 'https://github.com/Koorye/Inspire/'
       },
       abstract: 'Leveraging pretrained Vision-Language Models (VLMs) to map language instruction and visual observations to raw low-level actions, Vision-Language-Action models (VLAs) hold great promise for achieving general-purpose robotic systems. Despite their advancements, existing VLAs tend to spuriously correlate taskirrelevant visual features with actions, limiting their generalization capacity beyond the training data. To tackle this challenge, we propose Intrinsic Spatial Reasoning (InSpire), a simple yet effective approach that mitigates the adverse effects of spurious correlations by boosting the spatial reasoning ability of VLAs. Specifically, InSpire redirects the VLA’s attention to task-relevant factors by prepending the question “In which direction is the [object] relative to the robot?” to the language instruction and aligning the answer “right/left/up/down/front/back/grasped” and predicted actions with the ground-truth. Notably, InSpire can be used as a plugin to enhance existing autoregressive VLAs, requiring no extra training data or interaction with other large models. Extensive experimental results in both simulation and real-world environments demonstrate the effectiveness and flexibility of InSpire.',
@@ -165,6 +165,7 @@ export default {
       description: 'Parameter-free adaptation method, <span class="highlight-red">+1.04%</span> accuracy with <span class="highlight-red">15x speedup</span> and <span class="highlight-red">6.4x memory efficiency</span>',
       tags: ['Vision-Language Models', 'Transfer Learning', 'Efficiency'],
       links: {
+        project: 'https://koorye.github.io/SkipTuning/',
         arxiv: 'https://arxiv.org/abs/2412.11509',
         pdf: 'https://arxiv.org/pdf/2412.11509',
         code: 'https://github.com/Koorye/SkipTuning/'
@@ -255,6 +256,7 @@ export default {
       description: 'Plug-and-play method providing <span class="highlight-red">+0.67%~2.65%</span> gains across prompt tuning baselines',
       tags: ['Vision-Language Models', 'Transfer Learning', 'Prompt Tuning'],
       links: {
+        project: 'https://koorye.github.io/DePT/',
         arxiv: 'https://arxiv.org/abs/2309.07439',
         pdf: 'https://arxiv.org/pdf/2309.07439',
         code: 'https://github.com/Koorye/DePT/'
