@@ -60,12 +60,16 @@ export default {
   ],
   'data': [
     {
-      date: '2026年9月',
-      content: '我的论文引用量突破 <span class="highlight-red">300</span>！'
+      date: '2026年11月',
+      content: '我们的 <span class="highlight-red">HumanCOIN</span> 数据集正式发布！'
+    },
+    {
+      date: '2026年11月',
+      content: '我们的开源数据集累计下载量已突破 <span class="highlight-red">1 亿</span> 次！'
     },
     {
       date: '2026年9月',
-      content: '我们的 <span class="highlight-red">RoboCOIN</span> 数据集下载量已突破 <span class="highlight-red">50,000,000</span>！'
+      content: '我的论文引用量突破 <span class="highlight-red">300</span>！'
     },
     {
       date: '2026年6月',

@@ -15,7 +15,7 @@
           rel="noopener noreferrer"
         >
           <div class="media-content">
-            <img :src="item.icon" alt="Media Icon" class="media-icon">
+            <img :src="item.icon" alt="Media Icon" class="media-icon" loading="lazy" decoding="async">
             <div class="media-text">
               <div class="media-title">{{ item.title }}</div>
               <div class="media-desc">{{ item.desc }}</div>
@@ -49,94 +49,74 @@ const mediaReports = useLocaleData('news', 'reports');
 
 <style scoped>
 .section {
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid #eaeaea;
+  margin-top: 2.4rem;
+  padding-top: 2.2rem;
+  border-top: 1px solid var(--line);
 }
 
 .section h2 {
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  color: #0056b3;
-  padding-bottom: 0.5rem;
+  font-family: var(--ff-display);
+  font-size: 1.55rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.4rem;
+  color: var(--ink);
 }
 
-/* ====================================
-   紧凑小卡片布局（不占空间）
-==================================== */
 .media-section {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.2rem;
 }
 
 .media-section .section-subtitle {
-  font-size: 1rem;
-  margin-top: -1rem;
-  margin-bottom: 1rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin: 0 0 1rem;
 }
 
 .media-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 0.8rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 2rem;
 }
 
-/* ====================================
-   修改后的媒体卡片样式
-==================================== */
 .media-card {
-  padding: 0.5rem 1rem;
-  background: #f8f9fa;
-  border-radius: 8px;
-  border-left: 3px solid #0056b3;
-  
-  /* 关键修改：转为 flex 纵向布局 */
   display: flex;
   flex-direction: column;
-  /* ======================== */
-
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: all 0.2s ease;
+  padding: 0.85rem 0 0.7rem;
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: none;
   text-decoration: none;
   color: inherit;
+  transition: none;
   cursor: pointer;
-  
-  /* 移除原有的 align-items: center (如果它是为了横向居中) */
-  /* 如果需要内容横向居中，可以使用 align-items: stretch; */
 }
 
 .media-card:hover {
-  transform: translateY(-2px);
-  background: #eef5ff;
+  transform: none;
+  background: none;
 }
 
 .media-content {
   display: flex;
-  gap: 1rem;
-  align-items: center;
-  /* 确保内容区域不会压缩，保持在顶部 */
-  flex-shrink: 0; 
-}
-
-.click-more {
-  font-size: 0.8rem;
-  color: #aaa;
-  text-align: center;
-  
-  /* 关键修改：自动撑开顶部间距，将其挤到底部 */
-  margin-top: auto; 
-  padding-top: 0.8rem; /* 增加一点与上方文字的间距 */
-}
-
-/* 更小的图标 */
-.media-icon {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
+  gap: 0.7rem;
+  align-items: flex-start;
   flex-shrink: 0;
 }
 
-/* 文字更紧凑 */
+.media-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
 .media-text {
   flex: 1;
   display: flex;
@@ -145,148 +125,127 @@ const mediaReports = useLocaleData('news', 'reports');
 }
 
 .media-title {
+  font-family: var(--ff-sans);
+  font-size: 0.84rem;
   font-weight: 600;
-  color: #222;
-  margin-bottom: 0.1rem;
-  white-space: nowrap;
+  color: var(--ink);
+  line-height: 1.4;
+  margin-bottom: 0.15rem;
+  white-space: normal;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color 0.2s ease;
+}
+
+.media-card:hover .media-title {
+  color: var(--accent);
 }
 
 .media-desc {
-  color: #666;
-  line-height: 1.3;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  line-height: 1.5;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* ====================================
-   原有时间线样式
-==================================== */
+.click-more {
+  display: none;
+}
+
 .news-timeline {
   display: flex;
   flex-direction: column;
-  padding-left: 1.5rem;
-  position: relative;
+  padding-left: 0;
+  position: static;
 }
 
 .news-timeline::before {
-  content: '';
-  position: absolute;
-  left: 15px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background-color: #dddddd;
+  display: none;
 }
 
 .news-item {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-  padding: 0.8rem 0;
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: baseline;
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--line);
 }
 
 .news-date {
-  min-width: 80px;
-  font-weight: 600;
-  color: #0056b3;
-  font-size: 0.9rem;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--ff-mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
   white-space: nowrap;
-  margin-top: 0.4rem;
-  margin-left: 1rem;
 }
 
 .news-content {
-  flex: 1;
-  background-color: #f8f9fa;
-  padding: 0.4rem 1.2rem;
-  border-radius: 6px;
-  border-left: 3px solid #a0c1d9;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
 }
 
 .news-content p {
   margin: 0;
-  line-height: 1.5;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--ink-body);
 }
 
-/* 响应式适配 */
 @media (max-width: 768px) {
+  .section {
+    margin-top: 1.7rem;
+    padding-top: 1.7rem;
+  }
+  .section h2 {
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+  }
+  .media-section {
+    margin-bottom: 1.7rem;
+  }
   .media-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
+    gap: 0 1rem;
   }
-
   .media-card {
-    padding: 0.4rem 0.6rem;
-    border-radius: 6px;
+    padding: 0.7rem 0 0.55rem;
   }
-
-  .media-content {
-    gap: 0.4rem;
-    align-items: flex-start;
-  }
-
   .media-icon {
-    width: 28px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
   }
-
   .media-title {
-    font-size: 0.9rem;
-    white-space: normal;
+    font-size: 0.8rem;
   }
-
   .media-desc {
-    font-size: 0.8rem;
-    -webkit-line-clamp: 3;
-  }
-
-  .click-more {
-    font-size: 0.8rem;
-    padding-top: 0.4rem;
-  }
-
-  .section-subtitle {
-    font-size: 1rem !important;
-    margin-top: -0.5rem !important;
-    margin-bottom: 0.6rem !important;
-  }
-
-  .news-timeline {
-    padding-left: 0;
-  }
-  .news-timeline::before {
-    display: none;
+    font-size: 0.78rem;
   }
   .news-item {
-    flex-direction: column;
-    gap: 0.2rem;
-    padding: 0.5rem 0;
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+    padding: 0.55rem 0;
   }
   .news-date {
-    min-width: unset;
-    color: #e74c3c;
-    font-size: 0.82rem;
-    margin-top: 0;
-    margin-left: 0;
-  }
-  .news-content {
-    padding: 0.5rem 0.8rem;
-    border-left-width: 2px;
+    font-size: 0.68rem;
   }
   .news-content p {
-    font-size: 0.88rem;
-    line-height: 1.4;
+    font-size: 0.85rem;
   }
 }
 
 @media (max-width: 480px) {
   .media-grid {
     grid-template-columns: 1fr;
-    gap: 0.4rem;
   }
 }
 </style>

@@ -1,5 +1,10 @@
 export default {
   name: '吴世涵',
+  contents: '目录',
+  theme: {
+    dark: '切换到夜间模式',
+    light: '切换到浅色模式',
+  },
   nav: [
     { id: 'introduction', title: '个人介绍' },
     { id: 'experience', title: '教育&工作经历' },

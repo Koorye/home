@@ -1,4 +1,8 @@
 export default {
+  'types': {
+    'robotics': 'Robotics',
+    'vlm': 'Vision-Language Model'
+  },
   'title': 'Publications',
   'buttons': {
     'project': 'Project',
@@ -7,16 +11,67 @@ export default {
     'code': 'Code',
     'click': 'Click for Details',
     'abstract': 'Abstract',
-    'contributions': 'Contributions'
+    'contributions': 'Contributions',
+    'cite': 'Cite',
+    'copyBibtex': 'Copy BibTeX',
+    'copied': 'Copied',
+    'close': 'Close'
   },
   'videoTitle': 'Project Video',
   'swiperTitle': 'Project Figures',
   'data': [
     {
+      title: 'HumanCOIN: A 12,500-Hour Dataset for Human Intent in Egocentric Manipulation',
+      date: 'Nov. 2026',
+      category: 'robotics',
+      image: new URL('../../assets/publications/humancoin.png', import.meta.url).href,
+      description: 'Built by <span class="highlight-red">30 universities, research institutes, and companies</span>, this <span class="highlight-red">12,500-hour</span> egocentric manipulation dataset records three nested tiers of human intent — <span class="highlight-red">10,000 h</span> gaze, <span class="highlight-red">2,000 h</span> surface EMG, and <span class="highlight-red">500 h</span> EEG — across <span class="highlight-red">38 scene classes</span>',
+      tags: ['Robotics', 'Egocentric Vision', 'Dataset'],
+      links: {
+        project: 'https://flagopen.github.io/HumanCOIN/',
+        arxiv: 'https://arxiv.org/abs/2611.26434',
+        pdf: 'https://arxiv.org/pdf/2611.26434',
+        code: 'https://github.com/FlagOpen/HumanCOIN'
+      },
+      abstract: 'First-person manipulation datasets treat the observation–action pair as the atomic unit and compress the generation and execution of an action into a policy network\'s weights, rendering the intent state behind the action unobservable. Human motor control research shows that intent mediates between observation and action and leaves observable traces along the intent pathway from decision to effect: gaze reaches the target before the hand, muscle load builds before contact, and cortical activity precedes the motor command. To record this pathway at scale, we present HumanCOIN, a first-person manipulation dataset built around human intent: <span class="highlight-red">12,500 hours</span> across <span class="highlight-red">38 scene classes</span> with three tiers of proxies. At the output end, the L1 attention tier (<span class="highlight-red">10,000 h</span>) infers gaze from headband camera video, exposing the operator\'s next object of attention and reach before the hand moves. Midway, the L2 exertion tier (<span class="highlight-red">2,000 h</span>) records surface EMG from armbands, making load expectations readable before execution is complete. At the origin, the L3 cognition tier (<span class="highlight-red">500 h</span>) records scalp EEG, giving early readouts of task decisions and monitoring. Each tier inherits all proxies from the tiers below. The dataset further provides multi-view RGB images, depth maps and point clouds, 6-DoF head and wrist pose, and step-level action and object annotations. The controlled L3 setting additionally measures gaze, hand pose and finger kinematics directly. Clock and calibration data are released with the dataset so that any read rate can be re-aligned. The three tiers cover three stations, from visual orienting to cortical preparation, making the process behind visual–action pairs available for modeling at dataset scale.',
+      contributions: [
+        '<span class="highlight-red">A proxy-grounded acquisition paradigm.</span> Three wearable proxies of the intent pathway — gaze, surface EMG, and EEG — are recorded alongside first-person manipulation and aligned to a common time base, making measurement depth a design axis.',
+        '<span class="highlight-red">A large-scale intent-pathway dataset.</span> The corpus, built with <span class="highlight-red">30 institutions</span>, comprises 12,500 hours over 38 scene classes, organised into three tiers, each contributing one proxy of the pathway, sharing a common task ontology and time base.',
+        '<span class="highlight-red">An open ecosystem for the community.</span> Acquisition software, a data browser and downloader, and an out-of-the-box client library are released with the corpus.'
+      ],
+      video: new URL('../../assets/publications/humancoin/video.mp4', import.meta.url).href,
+      detailImages: [
+        {
+          url: new URL('../../assets/publications/humancoin.png', import.meta.url).href
+        },
+        {
+          title: 'HumanCOIN in one view',
+          desc: 'The three tiers and their hours (12,500 h in total, split 10,000 / 2,000 / 500 h), episode length and task-depth distributions, all 38 scene classes, the task-verb vocabulary, and the 635 object classes — every stacked bar split by tier.',
+          url: new URL('../../assets/publications/humancoin/1.png', import.meta.url).href
+        },
+        {
+          title: 'One controlled L3 episode in full',
+          desc: 'A controlled L3 episode at t = 27.6 s: the metric point cloud with 6-DoF poses overlaid (a), eight synchronized camera views and the depth map (b), step-level annotations (c), and gaze, EMG, and EEG traces leading the action on a shared time axis (d).',
+          url: new URL('../../assets/publications/humancoin/2.png', import.meta.url).href
+        },
+        {
+          title: 'Instrumentation by tier',
+          desc: 'The L1 four-camera headband; the L2 kit adding two surface-EMG armbands; and the L3 kit adding two wrist cameras and an EEG cap, with an eye tracker, motion-capture gloves, and 6-DoF trackers in the controlled setting.',
+          url: new URL('../../assets/publications/humancoin/3.png', import.meta.url).href
+        },
+        {
+          title: 'Head-camera frames across 38 scene classes',
+          desc: 'One head-camera frame for each of the 38 scene classes, ordered by zone and recorded hours — from residential and commercial spaces to professional, industrial, and public environments.',
+          url: new URL('../../assets/publications/humancoin/4.png', import.meta.url).href
+        }
+      ]
+    },
+    {
       title: 'RoboCOIN: An Open-Sourced Bimanual Robotic Data Collection for Integrated Manipulation',
       date: 'Nov. 2025',
+      category: 'robotics',
       image: new URL('../../assets/publications/robocoin.png', import.meta.url).href,
-      description: 'Open-sourced large-scale bimanual robotic dataset with <span class="highlight-red">15 robotic platforms</span> and <span class="highlight-red">180K+ demonstrations</span>, built with <span class="highlight-red">20 institutions</span>; used by <span class="highlight-red">360+</span> institutions with over <span class="highlight-red">50,000,000</span> downloads, serving as training data for models such as <span class="highlight-red">Alibaba Qwen-RobotManip</span>, <span class="highlight-red">DAMO RynnValue</span>, <span class="highlight-red">Alibaba Cloud PAIWorld</span>, and <span class="highlight-red">PKU LDA-1B</span>',
+      description: 'Open-sourced large-scale bimanual robotic dataset with <span class="highlight-red">15 robotic platforms</span> and <span class="highlight-red">180K+ demonstrations</span>, built with <span class="highlight-red">20 institutions</span>; used by <span class="highlight-red">360+</span> institutions, with over <span class="highlight-red">100,000,000</span> cumulative downloads across our released datasets, serving as training data for models such as <span class="highlight-red">Alibaba Qwen-RobotManip</span>, <span class="highlight-red">DAMO RynnValue</span>, <span class="highlight-red">Alibaba Cloud PAIWorld</span>, and <span class="highlight-red">PKU LDA-1B</span>',
       tags: ['Robotics', 'Dataset'],
       links: {
         project: 'https://flagopen.github.io/RoboCOIN/',
@@ -62,6 +117,7 @@ export default {
     {
       title: '<span class="highlight-red">[ICLR 2026]</span> Policy Contrastive Decoding for Robotic Foundation Models',
       date: 'Sep. 2025',
+      category: 'robotics',
       image: new URL('../../assets/publications/pcd.png', import.meta.url).href,
       description: 'Universal framework for multiple VLA architectures, achieving <span class="highlight-red">+8%~41%</span> improvement without training',
       tags: ['Robotics', 'Vision-Language-Action Models', 'Test-Time'],
@@ -112,6 +168,7 @@ export default {
     {
       title: '<span class="highlight-red">[ICRA 2026]</span> InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning',
       date: 'Sep. 2025',
+      category: 'robotics',
       image: new URL('../../assets/publications/inspire.png', import.meta.url).href,
       description: 'Reducing spurious correlations in VLAs, boosting performance on <span class="highlight-red">seen (+6.2%)</span> and <span class="highlight-red">unseen (+10%)</span> tasks',
       tags: ['Robotics', 'Vision-Language-Action Models', 'Spatial Reasoning'],
@@ -161,6 +218,7 @@ export default {
     {
       title: '<span class="highlight-red">[CVPR 2025]</span> Skip Tuning: Pre-trained Vision-Language Models are Effective and Efficient Adapters Themselves',
       date: 'Dec. 2024',
+      category: 'vlm',
       image: new URL('../../assets/publications/skiptuning.png', import.meta.url).href,
       description: 'Parameter-free adaptation method, <span class="highlight-red">+1.04%</span> accuracy with <span class="highlight-red">15x speedup</span> and <span class="highlight-red">6.4x memory efficiency</span>',
       tags: ['Vision-Language Models', 'Transfer Learning', 'Efficiency'],
@@ -208,6 +266,7 @@ export default {
     {
       title: '<span class="highlight-red">[IJCV 2026]</span> A Closer Look at Conditional Prompt Tuning for Vision-Language Models',
       date: 'Aug. 2024',
+      category: 'vlm',
       image: new URL('../../assets/publications/capt.png', import.meta.url).href,
       description: 'Identified critical issues in existing conditional prompt tuning methods, outperformed the state-of-the-art conditional PT methods by <span class="highlight-red">3.49%</span>',
       tags: ['Vision-Language Models', 'Transfer Learning', 'Prompt Tuning'],
@@ -252,6 +311,7 @@ export default {
     {
       title: '<span class="highlight-red">[CVPR 2024]</span> Decoupled Prompt Tuning',
       date: 'Nov. 2023',
+      category: 'vlm',
       image: new URL('../../assets/publications/dept.png', import.meta.url).href,
       description: 'Plug-and-play method providing <span class="highlight-red">+0.67%~2.65%</span> gains across prompt tuning baselines',
       tags: ['Vision-Language Models', 'Transfer Learning', 'Prompt Tuning'],

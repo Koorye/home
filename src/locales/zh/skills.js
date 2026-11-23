@@ -1,35 +1,18 @@
 export default {
   title: '个人技能',
+  lead: '研究与工程中使用的编程语言、框架和工具。',
   data: [
     {
       category: '编程语言',
-      skills: [
-        { name: 'Python', level: 95 },
-        { name: 'Java', level: 70 },
-        { name: 'C/C++', level: 60 },
-        { name: 'C/C#', level: 60 },
-        { name: 'SQL', level: 60 },
-      ]
+      skills: ['Python', 'Java', 'C/C++', 'C/C#', 'SQL'],
     },
     {
-      category: 'AI框架',
-      skills: [
-        { name: 'PyTorch', level: 95 },
-        { name: 'Scikit-Learn', level: 85 },
-        { name: 'MMDetection', level: 80 },
-        { name: 'TensorFlow/Keras', level: 70 },
-        { name: 'JAX', level: 60 },
-      ]
+      category: 'AI 框架',
+      skills: ['PyTorch', 'Scikit-Learn', 'MMDetection', 'TensorFlow/Keras', 'JAX'],
     },
     {
-      category: '开发&运维',
-      skills: [
-        { name: 'SprintBoot', level: 80 },
-        { name: 'Vue.js', level: 75 },
-        { name: 'MySQL/Redis', level: 75 },
-        { name: 'Docker', level: 70 },
-        { name: 'Unity 3D', level: 65 }
-      ]
-    }
-  ]
+      category: '开发与运维',
+      skills: ['Spring Boot', 'Vue.js', 'MySQL/Redis', 'Docker', 'Unity 3D'],
+    },
+  ],
 }

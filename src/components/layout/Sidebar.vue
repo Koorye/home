@@ -10,6 +10,16 @@
       <span class="mobile-name" v-html="t('sections.name')"></span>
       <a class="mobile-email" href="mailto:shihan.wu.koorye@outlook.com">shihan.wu.koorye@outlook.com</a>
     </div>
+    <button
+      class="mobile-theme-toggle"
+      type="button"
+      @click="toggleTheme"
+      :title="isDark ? t('sections.theme.light') : t('sections.theme.dark')"
+      :aria-label="isDark ? t('sections.theme.light') : t('sections.theme.dark')"
+      :aria-pressed="isDark"
+    >
+      <i class="fas" :class="isDark ? 'fa-sun' : 'fa-moon'" aria-hidden="true"></i>
+    </button>
   </header>
 
   <div class="drawer-backdrop" :class="{ visible: isNavOpen }" @click="isNavOpen = false"></div>
@@ -23,12 +33,31 @@
       </div>
     </div>
 
+    <div class="toc-head">
+      <p class="nav-label">{{ t('sections.contents') }}</p>
+      <button
+        class="theme-toggle"
+        type="button"
+        @click="toggleTheme"
+        :title="isDark ? t('sections.theme.light') : t('sections.theme.dark')"
+        :aria-label="isDark ? t('sections.theme.light') : t('sections.theme.dark')"
+        :aria-pressed="isDark"
+      >
+        <i class="fas" :class="isDark ? 'fa-sun' : 'fa-moon'" aria-hidden="true"></i>
+      </button>
+    </div>
+
     <nav class="navigation">
       <ul>
         <li
           v-for="section in sections"
           :key="section.id"
+          :data-section="section.id"
+          role="link"
+          tabindex="0"
           @click="handleNavClick(section.id)"
+          @keydown.enter.prevent="handleNavClick(section.id)"
+          @keydown.space.prevent="handleNavClick(section.id)"
         >
           {{ section.title }}
         </li>
@@ -38,52 +67,54 @@
     <div class="contact-info">
       <p class="contact-title">{{ t('sections.contact.find') }}</p>
       <div class="contact-links">
-        <a href="https://github.com/Koorye" target="_blank" class="contact-link" title="GitHub">
-          <img src="../../assets/icons/github.svg" alt="GitHub" class="contact-icon" />
+        <a href="https://github.com/Koorye" target="_blank" rel="noopener noreferrer" class="contact-link" title="GitHub">
+          <img src="../../assets/icons/github.svg" alt="GitHub" class="contact-icon contact-icon--github" />
           <span class="contact-text">{{ t('sections.contact.github') }}</span>
         </a>
-        <a href="https://koorye.github.io/blog" target="_blank" class="contact-link" title="Blog">
+        <a href="https://koorye.github.io/blog" target="_blank" rel="noopener noreferrer" class="contact-link" title="Blog">
           <img src="../../assets/icons/blog.svg" alt="Blog" class="contact-icon" />
           <span class="contact-text">{{ t('sections.contact.blog') }}</span>
         </a>
-        <a href="https://scholar.google.com/citations?user=7VCaV5EAAAAJ&hl=zh-CN" target="_blank" class="contact-link" title="Google Scholar">
+        <a href="https://scholar.google.com/citations?user=7VCaV5EAAAAJ&hl=zh-CN" target="_blank" rel="noopener noreferrer" class="contact-link" title="Google Scholar">
           <img src="../../assets/icons/google-scholar.svg" alt="Google Scholar" class="contact-icon" />
           <span class="contact-text">{{ t('sections.contact.gs') }}</span>
         </a>
-        <a href="https://dblp.org/pid/132/9517-1" target="_blank" class="contact-link" title="DBLP">
+        <a href="https://dblp.org/pid/132/9517-1" target="_blank" rel="noopener noreferrer" class="contact-link" title="DBLP">
           <img src="../../assets/icons/dblp.svg" alt="DBLP" class="contact-icon" />
           <span class="contact-text">{{ t('sections.contact.dblp') }}</span>
         </a>
-        <a href="https://www.linkedin.com/in/shihan-wu-koorye/" target="_blank" class="contact-link" title="LinkedIn">
+        <a href="https://www.linkedin.com/in/shihan-wu-koorye/" target="_blank" rel="noopener noreferrer" class="contact-link" title="LinkedIn">
           <img src="../../assets/icons/linkedin.svg" alt="LinkedIn" class="contact-icon" />
           <span class="contact-text">{{ t('sections.contact.linkedin') }}</span>
         </a>
-        <a href="resume-en.pdf" target="_blank" class="contact-link" title="CV">
+        <a href="resume-en.pdf" target="_blank" rel="noopener noreferrer" class="contact-link" title="CV">
           <img src="../../assets/icons/resume.svg" alt="CV" class="contact-icon" />
           <span class="contact-text">{{ t('sections.contact.cv') }}</span>
         </a>
-        <a href="resume-zh_CN.pdf" target="_blank" class="contact-link" title="简历">
+        <a href="resume-zh_CN.pdf" target="_blank" rel="noopener noreferrer" class="contact-link" title="简历">
           <img src="../../assets/icons/resume.svg" alt="简历" class="contact-icon" />
           <span class="contact-text">{{ t('sections.contact.resume') }}</span>
         </a>
       </div>
 
-      <div class="language-toggle">
-        <button
-          class="toggle-btn"
-          :class="{ active: locale === 'en' }"
-          @click="switchLanguage('en')"
-        >
-          EN
-        </button>
-        <div class="toggle-slider" :style="{ transform: `translateX(${locale === 'zh' ? '100%' : '0'})` }"></div>
-        <button
-          class="toggle-btn"
-          :class="{ active: locale === 'zh' }"
-          @click="switchLanguage('zh')"
-        >
-          中文
-        </button>
+      <div class="sidebar-actions">
+        <div class="language-toggle">
+          <button
+            class="toggle-btn"
+            :class="{ active: locale === 'en' }"
+            @click="switchLanguage('en')"
+          >
+            EN
+          </button>
+          <div class="toggle-slider" :style="{ transform: `translateX(${locale === 'zh' ? '100%' : '0'})` }"></div>
+          <button
+            class="toggle-btn"
+            :class="{ active: locale === 'zh' }"
+            @click="switchLanguage('zh')"
+          >
+            中文
+          </button>
+        </div>
       </div>
 
       <p class="contact-desc">{{ t('sections.copyright') }}</p>
@@ -92,7 +123,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, nextTick, onMounted, onUnmounted } from 'vue'
 import { useScroll } from '@/composables/useScroll'
 import { useI18n } from 'vue-i18n'
 import { useLocaleData } from '@/composables/useLocaleData'
@@ -101,9 +132,32 @@ const { t, locale } = useI18n({ useScope: 'global' })
 
 const sections = useLocaleData('sections', 'nav')
 
-const { scrollToSection } = useScroll(sections)
+const { scrollToSection, initScrollListener, cleanupScrollListener } = useScroll(sections.value)
 
 const isNavOpen = ref(false)
+
+const theme = ref(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light')
+const isDark = computed(() => theme.value === 'dark')
+
+const applyTheme = (value) => {
+  theme.value = value
+  document.documentElement.dataset.theme = value
+  document.documentElement.style.colorScheme = value
+  localStorage.setItem('preferred-theme', value)
+  const meta = document.querySelector('meta[name="theme-color"]')
+  if (meta) meta.setAttribute('content', value === 'dark' ? '#0b131b' : '#ffffff')
+}
+
+const toggleTheme = () => applyTheme(isDark.value ? 'light' : 'dark')
+
+onMounted(async () => {
+  await nextTick()
+  initScrollListener()
+})
+
+onUnmounted(() => {
+  cleanupScrollListener()
+})
 
 const toggleNav = () => {
   isNavOpen.value = !isNavOpen.value
@@ -116,27 +170,32 @@ const handleNavClick = (id) => {
 
 const switchLanguage = (lang) => {
   locale.value = lang
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en'
+  document.title = lang === 'zh'
+    ? '吴世涵 | 北京智源人工智能研究院 具身智能研究员'
+    : 'Shihan Wu | Embodied Intelligence Researcher at BAAI'
   localStorage.setItem('preferred-language', lang)
 }
 
 const savedLang = localStorage.getItem('preferred-language')
-if (savedLang) {
-  locale.value = savedLang
+if (savedLang === 'zh' || savedLang === 'en') {
+  switchLanguage(savedLang)
 }
 </script>
 
 <style scoped>
 /* ========== Desktop Sidebar ========== */
 .sidebar {
-  width: 280px;
-  background-color: #e6f2ff;
-  padding: 2rem 1.5rem;
+  width: var(--toc-w);
+  background-color: var(--paper);
+  border-right: 0;
+  padding: 2rem 1.5rem 1.5rem;
   position: fixed;
   top: 0;
-  left: 0;
+  left: var(--page-gutter);
   height: 100vh;
   overflow-y: auto;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
   z-index: 100;
   display: flex;
   flex-direction: column;
@@ -152,15 +211,15 @@ if (savedLang) {
 }
 
 .profile-section {
-  text-align: center;
+  text-align: left;
 }
 
 .avatar {
-  width: 120px;
-  height: 120px;
+  width: 84px;
+  height: 84px;
   border-radius: 50%;
-  background-color: #a0c1d9;
-  margin: 0 auto 1rem;
+  background-color: var(--surface);
+  margin: 0 0 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -170,20 +229,22 @@ if (savedLang) {
 }
 
 .name {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #333;
+  font-family: var(--ff-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.3rem;
+  color: var(--ink);
 }
 
 .location {
-  font-size: 0.9rem;
-  color: #555;
-  margin-bottom: 1.5rem;
+  font-size: 0.7rem;
+  color: var(--ink-mute);
+  margin-bottom: 1.6rem;
 }
 
 .location a {
-  color: #555;
+  color: var(--ink-mute);
   text-decoration: none;
 }
 
@@ -191,8 +252,27 @@ if (savedLang) {
   text-decoration: underline;
 }
 
+.toc-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.55rem;
+}
+
+.nav-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+  margin: 0;
+}
+
 .navigation {
   flex: 1;
+  border-top: 1px solid var(--line);
+  padding-top: 0.9rem;
 }
 
 .navigation ul {
@@ -204,113 +284,156 @@ if (savedLang) {
 .navigation li {
   padding: 0.3rem 0;
   cursor: pointer;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-  font-weight: 500;
-  text-align: center;
+  border-radius: 0;
+  transition: color 0.2s ease;
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  color: var(--ink-soft);
+  text-align: left;
 }
 
 .navigation li:hover {
-  background-color: #c2d9f0;
+  background-color: transparent;
+  color: var(--ink);
 }
 
 .navigation li.active {
-  background-color: #a0c1d9;
-  color: white;
+  background-color: transparent;
+  color: var(--accent);
 }
 
 .contact-info {
-  text-align: center;
-  padding: 1rem 0;
+  text-align: left;
+  padding: 1.15rem 0 0;
+  border-top: 1px solid var(--line);
 }
 
 .contact-title {
-  font-size: 0.95rem;
-  color: #555;
-  margin-bottom: 0.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 0.55rem;
   font-weight: 500;
 }
 
 .contact-links {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.8rem;
-  margin-bottom: 1.2rem;
-  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  margin-bottom: 0.9rem;
+  padding: 0;
 }
 
 .contact-link {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+  justify-content: flex-start;
+  gap: 0.45rem;
   text-decoration: none;
-  color: #333;
-  background-color: #f0f7ff;
-  padding: 0.6rem 0.5rem;
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  color: var(--ink-soft);
+  background-color: transparent;
+  padding: 0.18rem 0;
+  border-radius: 0;
+  transition: color 0.2s ease;
 }
 
 .contact-link:hover {
-  background-color: #d1e7ff;
-  transform: translateY(-2px);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  color: var(--ink);
+  transform: none;
+  box-shadow: none;
+  text-decoration: none;
 }
 
 .contact-icon {
-  width: 22px;
-  height: 22px;
+  width: 15px;
+  height: 15px;
   display: inline-block;
+  opacity: 0.95;
+}
+
+.contact-link:hover .contact-icon {
+  opacity: 1;
 }
 
 .contact-text {
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.82rem;
+  font-weight: 400;
 }
 
 .contact-desc {
-  font-size: 0.8rem;
-  color: #888;
-  margin-top: 0.5rem;
+  font-size: 0.64rem;
+  line-height: 1.5;
+  color: var(--ink-mute);
+  margin-top: 0.6rem;
+  white-space: nowrap;
 }
 
 .language-toggle {
   position: relative;
   display: inline-flex;
-  border-radius: 20px;
-  background-color: #d1e7ff;
-  overflow: hidden;
-  margin: 12px 0;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  gap: 0.9rem;
+  border-radius: 0;
+  background-color: transparent;
+  overflow: visible;
+  margin: 0;
+  box-shadow: none;
+}
+
+.sidebar-actions {
+  display: flex;
+  align-items: center;
+  margin: 0.2rem 0 0.8rem;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.theme-toggle i {
+  font-size: 0.68rem;
 }
 
 .toggle-btn {
-  padding: 8px 20px;
+  padding: 0 0 2px;
   border: none;
+  border-bottom: 1px solid transparent;
   background: transparent;
-  color: #333;
+  color: var(--ink-mute);
   cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   z-index: 2;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .toggle-btn.active {
-  color: white;
+  color: var(--ink);
+  border-bottom-color: var(--accent);
 }
 
 .toggle-slider {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 50%;
-  background-color: #4a89dc;
-  border-radius: 20px;
-  transition: transform 0.3s ease;
-  z-index: 1;
+  display: none;
 }
 
 /* ========== Mobile ========== */
@@ -323,11 +446,12 @@ if (savedLang) {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 0.4rem 0.8rem;
-    background-color: #e6f2ff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 0.4rem 0.9rem;
+    background-color: var(--paper);
+    border-bottom: 1px solid var(--line);
+    box-shadow: none;
     z-index: 120;
-    height: 48px;
+    height: 52px;
   }
 
   .hamburger {
@@ -345,7 +469,7 @@ if (savedLang) {
     display: block;
     width: 18px;
     height: 2px;
-    background-color: #333;
+    background-color: var(--ink);
     border-radius: 2px;
     transition: all 0.3s ease;
   }
@@ -374,16 +498,42 @@ if (savedLang) {
     line-height: 1.2;
   }
 
+  .mobile-theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    margin-left: auto;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: none;
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+
+  .mobile-theme-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .mobile-theme-toggle i {
+    font-size: 0.72rem;
+  }
+
   .mobile-name {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #333;
+    font-family: var(--ff-display);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--ink);
     display: block;
   }
 
   .mobile-email {
-    font-size: 0.82rem;
-    color: #555;
+    font-size: 0.76rem;
+    color: var(--ink-mute);
     text-decoration: none;
     display: block;
     overflow: hidden;
@@ -444,40 +594,39 @@ if (savedLang) {
 
   .contact-links {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.25rem;
-    margin-bottom: 0.4rem;
+    flex-direction: column;
+    gap: 0.08rem;
+    margin-bottom: 0.5rem;
     padding: 0;
   }
 
   .contact-link {
-    padding: 0.35rem 0.5rem;
-    border-radius: 6px;
-    gap: 0.3rem;
+    padding: 0;
+    border-radius: 0;
+    gap: 0.35rem;
   }
 
   .contact-icon {
-    width: 22px;
-    height: 22px;
+    width: 14px;
+    height: 14px;
   }
 
   .contact-text {
-    font-size: 0.88rem;
+    font-size: 0.8rem;
   }
 
   .contact-desc {
-    font-size: 0.82rem;
-    margin-top: 0.2rem;
+    font-size: 0.7rem;
+    margin-top: 0.4rem;
   }
 
   .toggle-btn {
-    padding: 5px 14px;
-    font-size: 0.82rem;
+    padding: 0 0 2px;
+    font-size: 0.74rem;
   }
 
-  .language-toggle {
-    margin: 4px 0;
+  .sidebar-actions {
+    margin: 0.2rem 0 0.6rem;
   }
 }
 </style>

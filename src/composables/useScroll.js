@@ -4,13 +4,13 @@ export function useScroll(sections) {
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      section.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
     }
   };
   
   const initScrollListener = () => {
     scrollHandler = () => {
-      const scrollTop = document.querySelector('.content').scrollTop;
       sections.forEach(section => {
         const el = document.getElementById(section.id);
         if (!el) return;
@@ -19,23 +19,30 @@ export function useScroll(sections) {
         if (navItem) {
           if (rect.top <= 50 && rect.bottom >= 50) {
             navItem.classList.add('active');
+            navItem.setAttribute('aria-current', 'true');
           } else {
             navItem.classList.remove('active');
+            navItem.removeAttribute('aria-current');
           }
         }
       });
     };
     
     document.querySelector('.content').addEventListener('scroll', scrollHandler);
+    window.addEventListener('scroll', scrollHandler, { passive: true });
     
     document.querySelectorAll('.navigation li').forEach((li, index) => {
       li.setAttribute('data-section', sections[index].id);
     });
+
+    // Establish the active item on first paint, before the first scroll.
+    scrollHandler();
   };
   
   const cleanupScrollListener = () => {
     if (scrollHandler) {
       document.querySelector('.content').removeEventListener('scroll', scrollHandler);
+      window.removeEventListener('scroll', scrollHandler);
     }
   };
   

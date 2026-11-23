@@ -60,12 +60,16 @@ export default {
   ],
   'data': [
     {
-      date: 'Sep. 2026',
-      content: 'My papers have received over <span class="highlight-red">300</span> citations!'
+      date: 'Nov. 2026',
+      content: 'Our <span class="highlight-red">HumanCOIN</span> dataset is now released!'
+    },
+    {
+      date: 'Nov. 2026',
+      content: 'Our open-source datasets have surpassed <span class="highlight-red">100,000,000</span> cumulative downloads!'
     },
     {
       date: 'Sep. 2026',
-      content: 'Our <span class="highlight-red">RoboCOIN</span> dataset has surpassed <span class="highlight-red">50,000,000</span> total downloads!'
+      content: 'My papers have received over <span class="highlight-red">300</span> citations!'
     },
     {
       date: 'Jun. 2026',

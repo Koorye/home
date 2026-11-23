@@ -3,11 +3,11 @@
     <Sidebar />
     
     <main class="content">
-      <div class="banner-container">
-        <img src="../assets/banner.jpg" alt="Banner" class="banner" />
-      </div>
-      <p class="banner-caption" v-html="t('home.banner')"></p>
       <div class="content-wrapper">
+        <div class="banner-container">
+          <img src="../assets/banner.jpg" alt="Banner" class="banner" />
+        </div>
+        <p class="banner-caption" v-html="t('home.banner')"></p>
         <Introduction />
         <News />
         <Experience />
@@ -83,89 +83,89 @@ onUnmounted(() => {
 .home-container {
   display: flex;
   min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f7fa;
+  font-family: var(--ff-sans);
+  background-color: var(--paper);
 }
 
 .content {
   flex: 1;
-  margin-left: 280px;
+  margin-left: calc(var(--page-gutter) + var(--toc-offset));
   overflow-y: auto;
   height: 100vh;
-  background-color: white;
+  background-color: var(--paper);
 }
 
-/* Banner 样式 */
+/* Banner 样式：与正文同宽，悬停展开 */
 .banner-container {
-  width: 100%;
-  max-height: 300px;
-  overflow: hidden;
-  transition: max-height 1.0s cubic-bezier(0.6, 0, 0.4, 1), 
-              box-shadow 0.3s ease;
-  will-change: max-height;
   position: relative;
+  width: 100%;
+  max-height: 280px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: max-height 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .banner {
   width: 100%;
   height: auto;
   display: block;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  transition: mask-image 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-              -webkit-mask-image 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
+}
+
+.banner-container::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 72px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), var(--paper));
+  pointer-events: none;
+  transition: opacity 0.35s ease;
 }
 
 .banner-container:hover {
-  max-height: 2000px;
+  max-height: 1400px;
 }
 
-.banner-container:hover .banner {
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
-  transform: translateZ(0) scale(1.02);
-  -webkit-transform: translateZ(0) scale(1.02);
+.banner-container:hover::after {
+  opacity: 0;
 }
 
 .banner-caption {
   text-align: center;
-  font-size: 0.9rem;
-  color: #888;
-  margin-bottom: 1.5rem;
-  transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.banner-container:hover + .banner-caption {
-  color: #555;
+  font-size: 0.8rem;
+  letter-spacing: 0.01em;
+  color: var(--ink-mute);
+  padding: 0.7rem 0 0;
+  margin: 0 0 1.2rem;
 }
 
 .content-wrapper {
-  padding: 2rem 3rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 0 0 4rem;
+  max-width: var(--article-w);
+  margin: 0;
 }
 
 .highlight-blue-bold {
-  color: #3498db;
-  font-weight: 700;
+  color: inherit;
+  font-weight: 500;
 }
 
 .map-wrapper {
   text-align: center;
+  max-width: var(--article-w);
+  margin: 0;
+  padding: 2.4rem 0 3rem;
+  border-top: 1px solid var(--line);
 }
 
 .map-container {
   display: flex;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 0;
   max-width: 600px;
-  margin: 0rem auto;
+  margin: 1rem auto 0;
+  opacity: 0.9;
 }
 
 /* 响应式适配 */
@@ -179,61 +179,68 @@ onUnmounted(() => {
     margin-left: 0;
     height: auto;
     overflow-y: visible;
-    padding-top: 48px;
+    padding-top: 52px;
   }
   
   .content-wrapper {
-    padding: 1rem;
+    max-width: none;
+    padding: 0 1.15rem 3rem;
   }
 
   .content-wrapper :deep(.section) {
-    margin-bottom: 1.2rem;
-    padding-bottom: 1.2rem;
+    margin-top: 1.7rem;
+    padding-top: 1.7rem;
   }
 
   .content-wrapper :deep(.section h2) {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     margin-bottom: 1rem;
   }
   
   .content-header h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     margin-top: 0;
   }
   
   /* Banner 移动端适配 */
   .banner-container {
-    max-height: 150px;
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    max-height: none;
   }
-  .banner {
-    transition: mask-image 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                -webkit-mask-image 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  .banner-container::after {
+    display: none;
+  }
+  .banner-caption {
+    font-size: 0.74rem;
+    padding: 0.55rem 0 0;
+    margin-bottom: 1rem;
+  }
+  .map-wrapper {
+    max-width: none;
+    padding: 2rem 1.15rem;
   }
 }
 
 @media (min-width: 1200px) {
   .content-wrapper {
-    padding: 3rem 4rem;
+    padding-bottom: 4.5rem;
   }
 }
 
 /* 滚动条样式优化 */
 .content::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 .content::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: transparent;
 }
 
 .content::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 4px;
+  background: var(--line-strong);
+  border-radius: 3px;
 }
 
 .content::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+  background: var(--ink-mute);
 }
 </style>

@@ -26,91 +26,84 @@ const awardsList = useLocaleData('awards', 'data')
 
 <style scoped>
 .section {
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid #eaeaea;
+  margin-top: 2.4rem;
+  padding-top: 2.2rem;
+  border-top: 1px solid var(--line);
 }
 
 .section h2 {
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  color: #0056b3;
-  padding-bottom: 0.5rem;
+  font-family: var(--ff-display);
+  font-size: 1.55rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.4rem;
+  color: var(--ink);
 }
 
-/* 奖项特有样式 */
 .awards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.2rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0 2rem;
 }
 
 .award-item {
   display: flex;
-  align-items: center;
-  background-color: #f8f9fa;
-  padding: 1rem;
-  border-radius: 8px;
-  border-left: 4px solid #0056b3;
-  transition: transform 0.3s ease;
+  align-items: flex-start;
+  gap: 0.65rem;
+  background: none;
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--line);
+  border-left: 0;
+  border-radius: 0;
+  transition: none;
 }
 
 .award-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: none;
+  box-shadow: none;
 }
 
 .award-icon {
-  font-size: 2rem;
-  margin-right: 1rem;
-  flex-shrink: 0;
+  display: none;
 }
 
 .award-content h3 {
-  margin-bottom: 0.5rem;
-  color: #333;
-  font-size: 1rem;
+  font-family: var(--ff-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--ink);
+  margin-bottom: 0.15rem;
 }
 
 .award-content p {
-  color: #7f8c8d;
-  font-size: 0.9rem;
+  color: var(--ink-mute);
+  font-size: 0.78rem;
+  line-height: 1.5;
   margin: 0;
 }
 
-/* 响应式适配 */
 @media (max-width: 768px) {
-  .awards-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
+  .section {
+    margin-top: 1.7rem;
+    padding-top: 1.7rem;
   }
-
-  .award-item {
-    padding: 0.6rem;
-    flex-direction: column;
-    align-items: flex-start;
+  .section h2 {
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
   }
-
-  .award-icon {
-    font-size: 1.2rem;
-    margin-right: 0;
-    margin-bottom: 0.3rem;
-  }
-
-  .award-content h3 {
-    font-size: 0.88rem;
-    margin-bottom: 0.1rem;
-  }
-
-  .award-content p {
-    font-size: 0.78rem;
-  }
-}
-
-@media (max-width: 480px) {
   .awards-grid {
     grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .award-item {
+    padding: 0.7rem 0;
+  }
+  .award-content h3 {
+    font-size: 0.85rem;
+  }
+  .award-content p {
+    font-size: 0.74rem;
   }
 }
 </style>

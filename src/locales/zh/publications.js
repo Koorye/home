@@ -1,4 +1,8 @@
 export default {
+  'types': {
+    'robotics': '机器人',
+    'vlm': '视觉-语言模型'
+  },
   'title': '发表论文',
   'buttons': {
     'project': '项目主页',
@@ -7,16 +11,67 @@ export default {
     'code': '代码仓库',
     'click': '点击查看详情',
     'abstract': '摘要',
-    'contributions': '主要贡献'
+    'contributions': '主要贡献',
+    'cite': '引用',
+    'copyBibtex': '复制 BibTeX',
+    'copied': '已复制',
+    'close': '关闭'
   },
   'videoTitle': '项目演示视频',
   'swiperTitle': '项目图示',
   'data': [
     {
+      title: 'HumanCOIN: A 12,500-Hour Dataset for Human Intent in Egocentric Manipulation',
+      date: '2026年11月',
+      category: 'robotics',
+      image: new URL('../../assets/publications/humancoin.png', import.meta.url).href,
+      description: '由 <span class="highlight-red">30 家高校、科研机构与企业</span> 联合构建的 <span class="highlight-red">12,500 小时</span> 第一人称操作数据集，以 <span class="highlight-red">10,000 小时</span> 眼动、<span class="highlight-red">2,000 小时</span> 表面肌电与 <span class="highlight-red">500 小时</span> 脑电三层嵌套信号，让动作背后的人类意图变得可观测，覆盖 <span class="highlight-red">38 个场景类别</span>',
+      tags: ['机器人学', '第一人称视觉', '数据集'],
+      links: {
+        project: 'https://flagopen.github.io/HumanCOIN/',
+        arxiv: 'https://arxiv.org/abs/2611.26434',
+        pdf: 'https://arxiv.org/pdf/2611.26434',
+        code: 'https://github.com/FlagOpen/HumanCOIN'
+      },
+      abstract: '第一人称操作数据集通常将「观测–动作」对视为原子单元，把动作的生成与执行压缩进策略网络权重，使动作背后的意图状态不可观测。人类运动控制研究表明，意图在观测与动作之间起中介作用，并沿「意图通路」留下可观测痕迹：视线先于手到达目标，肌肉负载在接触前建立，皮层活动先于运动指令。为在大规模尺度上记录这一通路，我们提出 HumanCOIN——一个围绕人类意图构建的第一人称操作数据集：<span class="highlight-red">12,500 小时</span>、<span class="highlight-red">38 个场景类别</span>，包含三层代理信号。输出端 L1 注意层（<span class="highlight-red">10,000 小时</span>）从头戴相机视频推断注视，揭示操作者下一个关注与伸手目标；中间 L2 用力层（<span class="highlight-red">2,000 小时</span>）通过臂环记录表面肌电，使负载预期在执行完成前可读；源头 L3 认知层（<span class="highlight-red">500 小时</span>）记录头皮脑电，提供任务决策与监控的早期读数。每一层继承其下层的全部代理信号。数据集还提供多视角 RGB 图像、深度图与点云、6-DoF 头部与手腕位姿，以及步骤级动作与物体标注。受控 L3 场景还直接测量注视、手部位姿与手指运动学。数据集随附时钟与标定数据，任何读取速率都可重新对齐。三层覆盖从视觉定向到皮层准备的三个站点，使视觉–动作对背后的过程可在数据集尺度上建模。',
+      contributions: [
+        '<span class="highlight-red">代理信号驱动的采集范式。</span> 在采集第一人称操作数据的同时，记录意图通路上的三种可穿戴代理信号——眼动、表面肌电与脑电，并统一到同一时间基准，使测量深度成为数据集的设计维度。',
+        '<span class="highlight-red">大规模意图通路数据集。</span> 语料由 <span class="highlight-red">30 家机构</span> 联合构建，包含 12,500 小时、38 个场景类别，按三个层级组织，每层贡献一种代理信号，并共享统一的任务本体与时间基准。',
+        '<span class="highlight-red">面向社区的开源生态。</span> 随数据集发布采集软件、数据浏览与下载工具，以及开箱即用的客户端库。'
+      ],
+      video: new URL('../../assets/publications/humancoin/video.mp4', import.meta.url).href,
+      detailImages: [
+        {
+          url: new URL('../../assets/publications/humancoin.png', import.meta.url).href
+        },
+        {
+          title: 'HumanCOIN 全景',
+          desc: '三个层级的时长构成（总计 12,500 小时，分为 10,000 / 2,000 / 500 小时）、片段长度与任务深度分布、38 个场景类别、任务动词词表与 635 个物体类别；每个堆叠柱均按层级拆分。',
+          url: new URL('../../assets/publications/humancoin/1.png', import.meta.url).href
+        },
+        {
+          title: '一段完整的受控 L3 操作',
+          desc: '受控 L3 片段（t = 27.6 s）：叠加 6-DoF 位姿的度量点云（a）、八路同步相机视图与深度图（b）、步骤级标注（c），以及共享时间轴上先于动作的注视、肌电与脑电信号（d）。',
+          url: new URL('../../assets/publications/humancoin/2.png', import.meta.url).href
+        },
+        {
+          title: '分层采集设备',
+          desc: 'L1 四相机头环；L2 增加两副表面肌电臂环；L3 增加双腕相机与脑电帽，受控场景还包括眼动仪、动捕手套与 6-DoF 追踪器。',
+          url: new URL('../../assets/publications/humancoin/3.png', import.meta.url).href
+        },
+        {
+          title: '38 个场景类别的头戴相机画面',
+          desc: '每个场景类别对应一帧头戴相机画面，按区域与录制时长排序，覆盖居家、商业、专业、工业与公共环境。',
+          url: new URL('../../assets/publications/humancoin/4.png', import.meta.url).href
+        }
+      ]
+    },
+    {
       title: 'RoboCOIN: An Open-Sourced Bimanual Robotic Data Collection for Integrated Manipulation',
       date: '2025年11月',
+      category: 'robotics',
       image: new URL('../../assets/publications/robocoin.png', import.meta.url).href,
-      description: '开源大规模双手操作机器人数据集，包含 <span class="highlight-red">15 个机器人平台</span> 与 <span class="highlight-red">18 万+ 演示数据</span>，联合 <span class="highlight-red">20 家机构</span> 共同构建；已被 <span class="highlight-red">360+</span> 家机构使用，下载量超 <span class="highlight-red">5,000 万</span>，并作为<span class="highlight-red">阿里 Qwen-RobotManip</span>、<span class="highlight-red">达摩院 RynnValue</span>、<span class="highlight-red">阿里云 PAIWorld</span>、<span class="highlight-red">北大 LDA-1B</span> 等模型的训练集',
+      description: '开源大规模双手操作机器人数据集，包含 <span class="highlight-red">15 个机器人平台</span> 与 <span class="highlight-red">18 万+ 演示数据</span>，联合 <span class="highlight-red">20 家机构</span> 共同构建；已被 <span class="highlight-red">360+</span> 家机构使用，发布的数据集累计下载量超 <span class="highlight-red">1 亿</span> 次，并作为<span class="highlight-red">阿里 Qwen-RobotManip</span>、<span class="highlight-red">达摩院 RynnValue</span>、<span class="highlight-red">阿里云 PAIWorld</span>、<span class="highlight-red">北大 LDA-1B</span> 等模型的训练集',
       tags: ['机器人学', '数据集'],
       links: {
         project: 'https://flagopen.github.io/RoboCOIN/',
@@ -62,6 +117,7 @@ export default {
     {
       title: '<span class="highlight-red">[ICLR 2026]</span> Policy Contrastive Decoding for Robotic Foundation Models',
       date: '2025年9月',
+      category: 'robotics',
       image: new URL('../../assets/publications/pcd.png', import.meta.url).href,
       description: '适用于多种视觉-语言-动作模型的通用框架，无需训练即可实现 <span class="highlight-red">+8%~41%</span> 性能提升',
       tags: ['机器人学', '视觉-语言-动作模型', '测试时优化'],
@@ -112,6 +168,7 @@ export default {
     {
       title: '<span class="highlight-red">[ICRA 2026]</span> InSpire: Vision-Language-Action Models with Intrinsic Spatial Reasoning',
       date: '2025年9月',
+      category: 'robotics',
       image: new URL('../../assets/publications/inspire.png', import.meta.url).href,
       description: '降低视觉-语言-动作模型的伪相关，在已见任务提升 <span class="highlight-red">+6.2%</span>，未见任务提升 <span class="highlight-red">+10%</span>',
       tags: ['机器人学', '视觉-语言-动作模型', '空间推理'],
@@ -161,6 +218,7 @@ export default {
     {
       title: '<span class="highlight-red">[CVPR 2025]</span> Skip Tuning: Pre-trained Vision-Language Models are Effective and Efficient Adapters Themselves',
       date: '2024年12月',
+      category: 'vlm',
       image: new URL('../../assets/publications/skiptuning.png', import.meta.url).href,
       description: '无参数自适应方法，精度提升 <span class="highlight-red">+1.04%</span>，速度提升 <span class="highlight-red">15倍</span>，内存效率提升 <span class="highlight-red">6.4倍</span>',
       tags: ['视觉-语言模型', '迁移学习', '高效训练'],
@@ -208,6 +266,7 @@ export default {
     {
       title: '<span class="highlight-red">[IJCV 2026]</span> A Closer Look at Conditional Prompt Tuning for Vision-Language Models',
       date: '2024年8月',
+      category: 'vlm',
       image: new URL('../../assets/publications/capt.png', import.meta.url).href,
       description: '揭示现有条件提示微调的核心问题，相对 SOTA 提升精度 <span class="highlight-red">3.49%</span>',
       tags: ['视觉-语言模型', '迁移学习', '提示微调'],
@@ -252,6 +311,7 @@ export default {
     {
       title: '<span class="highlight-red">[CVPR 2024]</span> Decoupled Prompt Tuning',
       date: '2023年11月',
+      category: 'vlm',
       image: new URL('../../assets/publications/dept.png', import.meta.url).href,
       description: '即插即用，在各类提示微调基线上稳定带来 <span class="highlight-red">+0.67%~2.65%</span> 提升',
       tags: ['视觉-语言模型', '迁移学习', '提示微调'],

@@ -13,6 +13,7 @@
           :src="photo.image" 
           :alt="photo.title" 
           loading="lazy"
+          decoding="async"
         >
         <div class="caption">
           <h3>{{ photo.title }}</h3>
@@ -22,12 +23,9 @@
 
           <!-- 时间 + 位置 一行优雅展示 -->
           <div class="meta" v-if="photo.time || photo.location">
-            <span class="time" v-if="photo.time">
-              🕒 {{ photo.time }}
-            </span>
-            <span class="location" v-if="photo.location">
-              📍 {{ photo.location }}
-            </span>
+            <span class="time" v-if="photo.time">{{ photo.time }}</span>
+            <span class="meta-sep" v-if="photo.time && photo.location">·</span>
+            <span class="location" v-if="photo.location">{{ photo.location }}</span>
           </div>
 
         </div>
@@ -46,44 +44,42 @@ const galleryPhotos = useLocaleData('gallery', 'data');
 
 <style scoped>
 .section {
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid #eaeaea;
+  margin-top: 2.4rem;
+  padding-top: 2.2rem;
+  border-top: 1px solid var(--line);
 }
 
 .section h2 {
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  color: #0056b3;
-  padding-bottom: 0.5rem;
+  font-family: var(--ff-display);
+  font-size: 1.55rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.4rem;
+  color: var(--ink);
 }
 
-/* ======================
-   瀑布流核心样式
-====================== */
 .masonry-gallery {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  column-count: 3;
+  column-count: 5;
   column-gap: 1.2rem;
 }
 
 .masonry-item {
   break-inside: avoid;
-  margin-bottom: 1.2rem;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 1.7rem;
+  background: none;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+  transition: none;
   cursor: pointer;
 }
 
 .masonry-item:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: none;
+  box-shadow: none;
 }
 
 .masonry-item img {
@@ -91,122 +87,119 @@ const galleryPhotos = useLocaleData('gallery', 'data');
   height: auto;
   display: block;
   object-fit: cover;
+  border-radius: 2px;
+  transition: opacity 0.25s ease;
+}
+
+.masonry-item:hover img {
+  opacity: 0.9;
 }
 
 .caption {
-  padding: 1rem;
+  padding: 0.65rem 0 0;
 }
 
 .caption h3 {
-  margin: 0 0 0.6rem;
-  font-size: 1.1rem;
-  color: #222;
+  margin: 0 0 0.2rem;
+  font-family: var(--ff-sans);
+  font-size: 0.88rem;
+  color: var(--ink);
   font-weight: 600;
+  line-height: 1.45;
 }
 
-/* 时间 + 位置 信息行 */
 .meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-top: 0.6rem;
-  font-size: 0.85rem;
-  color: #555;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
 }
 
-.time, .location {
+.time,
+.location {
   display: inline-flex;
   align-items: center;
-  gap: 0.2rem;
   white-space: nowrap;
 }
 
-/* 描述文字 */
-.desc {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #666;
-  line-height: 1.5;
+.meta-sep {
+  color: var(--line-strong);
 }
 
-/* ======================
-   响应式适配
-====================== */
+.desc {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+@media (max-width: 1200px) {
+  .masonry-gallery {
+    column-count: 4;
+  }
+}
+
 @media (max-width: 992px) {
   .masonry-gallery {
-    column-count: 2;
+    column-count: 3;
   }
 }
 
 @media (max-width: 768px) {
+  .section {
+    margin-top: 1.7rem;
+    padding-top: 1.7rem;
+  }
   .section h2 {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     margin-bottom: 1rem;
   }
-
   .masonry-gallery {
     column-count: 2;
-    column-gap: 0.6rem;
+    column-gap: 1rem;
     max-width: 100%;
   }
-
   .masonry-item {
-    margin-bottom: 0.6rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 1.1rem;
   }
-
-  .masonry-item:hover {
-    transform: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  }
-
   .caption {
-    padding: 0.6rem;
+    padding: 0.5rem 0 0;
   }
-
   .caption h3 {
-    font-size: 0.9rem;
-    margin-bottom: 0.3rem;
+    font-size: 0.82rem;
   }
-
   .desc {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
+    line-height: 1.45;
   }
-
   .meta {
-    font-size: 0.75rem;
-    gap: 0.3rem;
-    margin-top: 0.3rem;
+    font-size: 0.66rem;
+    gap: 0.25rem;
+    margin-top: 0.25rem;
   }
 }
 
 @media (max-width: 480px) {
   .masonry-gallery {
-    column-count: 2;
-    column-gap: 0.5rem;
+    column-gap: 0.75rem;
   }
-
   .masonry-item {
-    margin-bottom: 0.5rem;
-    border-radius: 6px;
+    margin-bottom: 0.9rem;
   }
-
   .caption {
-    padding: 0.5rem;
+    padding: 0.4rem 0 0;
   }
-
   .caption h3 {
-    font-size: 0.82rem;
+    font-size: 0.78rem;
   }
-
   .desc {
-    font-size: 0.75rem;
-    line-height: 1.3;
-  }
-
-  .meta {
-    font-size: 0.7rem;
+    font-size: 0.72rem;
   }
 }
 </style>

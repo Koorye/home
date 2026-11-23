@@ -8,7 +8,7 @@
         class="timeline-item"
       >
         <div class="timeline-marker">
-          <img :src="exp.logo" :alt="exp.organization" class="logo" />
+          <img :src="exp.logo" :alt="exp.organization" class="logo" loading="lazy" decoding="async" />
           <div class="timeline-line" v-if="index < experiences.length - 1"></div>
         </div>
         <div class="timeline-content">
@@ -35,140 +35,136 @@ const experiences = useLocaleData('experience', 'data');
 
 <style scoped>
 .section {
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid #eaeaea;
+  margin-top: 2.4rem;
+  padding-top: 2.2rem;
+  border-top: 1px solid var(--line);
 }
 
 .section h2 {
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  color: #0056b3;
-  padding-bottom: 0.5rem;
+  font-family: var(--ff-display);
+  font-size: 1.55rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.4rem;
+  color: var(--ink);
 }
 
-/* 时间轴相关样式 */
 .timeline {
-  position: relative;
-  padding-left: 30px;
+  position: static;
+  padding-left: 0;
 }
 
 .timeline::before {
-  content: '';
-  position: absolute;
-  left: 15px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background-color: #e0e0e0;
+  display: none;
 }
 
 .timeline-item {
   display: flex;
-  margin-bottom: 2rem;
-  position: relative;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 1.15rem 0;
+  border-top: 1px solid var(--line);
+  position: static;
 }
 
 .timeline-marker {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 20px;
-  position: relative;
-  z-index: 2;
+  display: block;
+  margin: 0;
+  flex-shrink: 0;
+  position: static;
+  z-index: auto;
 }
 
 .logo {
-  width: 100px;
-  padding: 5px;
-  border-radius: 5px;
+  width: 64px;
+  padding: 0;
+  border-radius: 0;
 }
 
 .timeline-line {
-  width: 2px;
-  height: 100%;
-  background-color: #a0c1d9;
-  margin-top: 10px;
+  display: none;
 }
 
 .timeline-content {
   flex: 1;
-  padding-bottom: 20px;
+  padding: 0;
+}
+
+.timeline-content h3 {
+  font-family: var(--ff-sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.timeline-content h3 .highlight-link {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.timeline-content h3 .highlight-link:hover {
+  color: var(--accent);
 }
 
 .timeline-date {
-  color: #888;
-  font-weight: normal;
-  font-size: 0.9rem;
+  color: var(--ink-mute);
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-left: 0.35rem;
+}
+
+.timeline-content p {
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0.25rem 0 0;
 }
 
 .exp-details {
-  margin-top: 0.5rem;
+  margin-top: 0.35rem;
 }
 
 .p-close {
-  margin-bottom: 0.3rem;
-  color: #444;
+  margin-bottom: 0.15rem;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
 }
 
-/* 响应式适配 */
 @media (max-width: 768px) {
-  .timeline {
-    padding-left: 0;
+  .section {
+    margin-top: 1.7rem;
+    padding-top: 1.7rem;
   }
-  
-  .timeline::before {
-    display: none;
-  }
-  
-  .timeline-item {
-    flex-direction: row;
+  .section h2 {
+    font-size: 1.35rem;
     margin-bottom: 1rem;
-    gap: 0.6rem;
   }
-  
-  .timeline-marker {
-    margin-right: 0;
-    margin-bottom: 0;
-    flex-shrink: 0;
+  .timeline-item {
+    gap: 0.9rem;
+    padding: 0.85rem 0;
   }
-  
   .logo {
-    width: 56px;
-    padding: 2px;
+    width: 44px;
   }
-  
-  .timeline-line {
-    display: none;
-  }
-
-  .timeline-content {
-    padding-bottom: 0;
-  }
-
   .timeline-content h3 {
-    font-size: 1rem;
-    line-height: 1.4;
+    font-size: 0.86rem;
+    line-height: 1.45;
   }
-
   .timeline-date {
-    font-size: 0.82rem;
     display: block;
+    margin-left: 0;
+    font-size: 0.68rem;
   }
-
   .timeline-content p {
-    font-size: 0.88rem;
-    margin-top: 0.2rem;
+    font-size: 0.8rem;
   }
-
-  .exp-details {
-    margin-top: 0.3rem;
-  }
-
   .p-close {
-    font-size: 0.88rem;
-    margin-bottom: 0.2rem;
+    font-size: 0.76rem;
   }
 }
 </style>

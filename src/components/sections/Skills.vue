@@ -1,32 +1,21 @@
 <template>
   <section id="skills" class="section">
     <h2>{{ t('skills.title') }}</h2>
+    <p class="section-lead">{{ t('skills.lead') }}</p>
     <div class="skills-container">
-      <div 
-        v-for="(skillGroup, index) in skillGroups" 
-        :key="index" 
+      <div
+        v-for="(skillGroup, index) in skillGroups"
+        :key="index"
         class="skill-category"
       >
         <h3>{{ skillGroup.category }}</h3>
-        <div class="skills-list">
-          <div 
-            v-for="(skill, skillIndex) in skillGroup.skills" 
-            :key="skillIndex" 
-            class="skill-item"
-          >
-            <div class="skill-info">
-              <span class="skill-name">{{ skill.name }}</span>
-              <span class="skill-level">{{ skill.level }}%</span>
-            </div>
-            <div class="skill-bar">
-              <div 
-                class="skill-progress" 
-                :style="{ width: skill.level + '%' }"
-                :class="getSkillLevelClass(skill.level)"
-              ></div>
-            </div>
-          </div>
-        </div>
+        <p class="skill-list">
+          <span
+            v-for="(skill, skillIndex) in skillGroup.skills"
+            :key="skillIndex"
+            class="skill-name"
+          >{{ skill }}</span>
+        </p>
       </div>
     </div>
   </section>
@@ -38,142 +27,99 @@ import { useLocaleData } from '@/composables/useLocaleData';
 
 const { t } = useI18n();
 const skillGroups = useLocaleData('skills', 'data');
-
-// 技能等级样式类
-const getSkillLevelClass = (level) => {
-  if (level >= 90) return 'skill-expert';
-  if (level >= 80) return 'skill-advanced';
-  if (level >= 70) return 'skill-intermediate';
-  return 'skill-beginner';
-};
 </script>
 
 <style scoped>
 .section {
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid #eaeaea;
+  margin-top: 2.4rem;
+  padding-top: 2.2rem;
+  border-top: 1px solid var(--line);
 }
 
 .section h2 {
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  color: #0056b3;
-  padding-bottom: 0.5rem;
+  font-family: var(--ff-display);
+  font-size: 1.55rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.55rem;
+  color: var(--ink);
 }
 
-/* 技能特有样式 */
+.section-lead {
+  max-width: 70ch;
+  margin: 0 0 1.6rem;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
 .skills-container {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 2.2rem;
 }
 
 .skill-category {
-  flex: 1;
-  min-width: 250px;
-  background-color: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 8px;
-  border-left: 4px solid #0056b3;
+  min-width: 0;
+  padding: 0.9rem 0 1rem;
+  border-top: 1px solid var(--line);
 }
 
 .skill-category h3 {
-  margin-bottom: 1.5rem;
-  color: #333;
-  font-size: 1.2rem;
+  font-family: var(--ff-sans);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 0.5rem;
 }
 
-.skills-list {
+.skill-list {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.skill-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.skill-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-wrap: wrap;
+  align-items: baseline;
+  row-gap: 0.1rem;
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.85;
+  color: var(--ink-body);
 }
 
 .skill-name {
-  font-weight: 500;
+  white-space: nowrap;
 }
 
-.skill-level {
-  font-size: 0.9rem;
-  color: #666;
+.skill-name:not(:last-child)::after {
+  content: ',';
+  margin-right: 0.35rem;
 }
 
-.skill-bar {
-  height: 8px;
-  background-color: #e0e0e0;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.skill-progress {
-  height: 100%;
-  border-radius: 4px;
-  transition: width 0.5s ease;
-}
-
-.skill-expert {
-  background: linear-gradient(90deg, #2ecc71, #27ae60);
-}
-
-.skill-advanced {
-  background: linear-gradient(90deg, #3498db, #2980b9);
-}
-
-.skill-intermediate {
-  background: linear-gradient(90deg, #f39c12, #e67e22);
-}
-
-.skill-beginner {
-  background: linear-gradient(90deg, #e74c3c, #c0392b);
-}
-
-/* 响应式适配 */
 @media (max-width: 768px) {
+  .section {
+    margin-top: 1.7rem;
+    padding-top: 1.7rem;
+  }
+  .section h2 {
+    font-size: 1.35rem;
+    margin-bottom: 0.45rem;
+  }
+  .section-lead {
+    font-size: 0.86rem;
+    margin-bottom: 1.2rem;
+  }
   .skills-container {
-    display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.6rem;
+    gap: 0 1.5rem;
   }
-  
   .skill-category {
-    width: 100%;
-    min-width: unset;
-    padding: 0.8rem;
+    padding: 0.75rem 0 0.8rem;
   }
-
   .skill-category h3 {
-    font-size: 0.95rem;
-    margin-bottom: 0.7rem;
+    font-size: 0.84rem;
+    margin-bottom: 0.35rem;
   }
-
-  .skills-list {
-    gap: 0.6rem;
-  }
-
-  .skill-name {
-    font-size: 0.85rem;
-  }
-
-  .skill-level {
-    font-size: 0.78rem;
-  }
-
-  .skill-bar {
-    height: 5px;
+  .skill-list {
+    font-size: 0.86rem;
+    line-height: 1.75;
   }
 }
 
