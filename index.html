@@ -1,16 +1,98 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <link rel="icon" href="/home/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="color-scheme" content="light dark">
+
+    <title>Shihan Wu | Embodied Intelligence Researcher at BAAI</title>
+    <meta name="description" content="Shihan Wu is an Embodied Intelligence Researcher at BAAI, working on Embodied Intelligence, vision-language-action models, and large-scale robotic datasets such as RoboCOIN and HumanCOIN.">
+    <meta name="author" content="Shihan Wu">
+    <meta name="keywords" content="Shihan Wu, Embodied Intelligence, Vision-Language-Action Models, Robotics, Robotic Datasets, RoboCOIN, HumanCOIN, BAAI, UESTC">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://koorye.github.io/home/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shihan Wu">
+    <meta property="og:title" content="Shihan Wu | Embodied Intelligence Researcher at BAAI">
+    <meta property="og:description" content="Embodied Intelligence, vision-language-action models, and large-scale robotic datasets — including RoboCOIN and HumanCOIN.">
+    <meta property="og:url" content="https://koorye.github.io/home/">
+    <meta property="og:image" content="https://koorye.github.io/home/og-cover.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Shihan Wu — Embodied Intelligence Researcher at BAAI">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="zh_CN">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Shihan Wu | Embodied Intelligence Researcher at BAAI">
+    <meta name="twitter:description" content="Embodied Intelligence, vision-language-action models, and large-scale robotic datasets — including RoboCOIN and HumanCOIN.">
+    <meta name="twitter:image" content="https://koorye.github.io/home/og-cover.jpg">
+    <meta name="twitter:image:alt" content="Shihan Wu — Embodied Intelligence Researcher at BAAI">
+
     <!-- Font Awesome (用于PDF、Code等通用图标) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Academicons (用于arXiv等学术图标) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.2/css/academicons.min.css">
-    <title>Shihan Wu's Homepage</title>
-    <script type="module" crossorigin src="/home/assets/index-Ckt6NYnm.js"></script>
-    <link rel="stylesheet" crossorigin href="/home/assets/index-Be7hYz_3.css">
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Shihan Wu",
+        "url": "https://koorye.github.io/home/",
+        "jobTitle": "Embodied Intelligence Researcher",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Beijing Academy of Artificial Intelligence (BAAI)"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Electronic Science and Technology of China (UESTC)"
+        },
+        "knowsAbout": [
+          "Embodied Intelligence",
+          "Vision-Language Models",
+          "Vision-Language-Action Models",
+          "Robotic Manipulation",
+          "Egocentric Manipulation Datasets"
+        ],
+        "sameAs": [
+          "https://github.com/Koorye",
+          "https://koorye.github.io/blog",
+          "https://scholar.google.com/citations?user=7VCaV5EAAAAJ",
+          "https://dblp.org/pid/132/9517-1",
+          "https://www.linkedin.com/in/shihan-wu-koorye/"
+        ]
+      }
+    </script>
+
+    <script>
+      // Resolve theme and language before the first paint, so a dark-mode or
+      // Chinese-language visitor never sees a flash of the wrong state.
+      ;(() => {
+        try {
+          const savedTheme = localStorage.getItem('preferred-theme');
+          const dark = savedTheme === 'dark' || (savedTheme !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          const theme = dark ? 'dark' : 'light';
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#0b131b' : '#ffffff');
+
+          const savedLang = localStorage.getItem('preferred-language');
+          const zh = savedLang === 'zh';
+          document.documentElement.lang = zh ? 'zh-CN' : 'en';
+          if (zh) {
+            document.title = '吴世涵 | 北京智源人工智能研究院 具身智能研究员';
+          }
+        } catch (_) {}
+      })();
+    </script>
+    <script type="module" crossorigin src="/home/assets/index-CiZFn42G.js"></script>
+    <link rel="stylesheet" crossorigin href="/home/assets/index-CKgj9HuL.css">
   </head>
   <body>
     <div id="app"></div>
