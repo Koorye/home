@@ -7,7 +7,15 @@
       </a>
     </header>
     <section class="section">
-      <p v-for="(paragraph, index) in introductionData" :key="index" v-html="paragraph"></p>
+      <template v-for="(paragraph, index) in introductionData" :key="index">
+        <p v-html="paragraph"></p>
+        <div v-if="index === 0" class="research-block">
+          <p class="research-lead" v-html="$t('introduction.researchLead')"></p>
+          <ul class="research-list">
+            <li v-for="(item, itemIndex) in researchData" :key="itemIndex" v-html="item"></li>
+          </ul>
+        </div>
+      </template>
     </section>
   </div>
 </template>
@@ -22,6 +30,7 @@ const { t } = useI18n({
 });
 
 const introductionData = useLocaleData('introduction', 'data');
+const researchData = useLocaleData('introduction', 'research');
 </script>
 
 <style scoped>
@@ -71,6 +80,42 @@ const introductionData = useLocaleData('introduction', 'data');
   max-width: none;
 }
 
+.research-block {
+  margin: 1.15rem 0 1.45rem;
+}
+
+.research-lead {
+  margin-bottom: 0.55rem;
+  color: var(--ink);
+}
+
+.research-list {
+  display: grid;
+  gap: 0.42rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.research-list li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 1rem;
+  line-height: 1.68;
+  color: var(--ink-body);
+}
+
+.research-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
 @media (max-width: 768px) {
   .content-header {
     padding-bottom: 1rem;
@@ -86,9 +131,14 @@ const introductionData = useLocaleData('introduction', 'data');
     margin-top: 1.2rem;
   }
 
-  .section p {
+  .section p,
+  .research-list li {
     font-size: 0.96rem;
     line-height: 1.65;
+  }
+
+  .research-block {
+    margin: 1rem 0 1.2rem;
   }
 }
 </style>
