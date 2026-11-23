@@ -15,7 +15,7 @@ export default {
       link: 'https://www.baai.ac.cn/',
       date: '2025 - 2026',
       logo: new URL('../../assets/icons/baai.png', import.meta.url).href,
-      description: 'Conducted research on embodied AI and vision-language-action models',
+      description: 'Conducted research on Embodied Intelligence and vision-language-action models',
     },
     {
       title: 'Master of Computer Science and Technology',
@@ -26,7 +26,7 @@ export default {
       description: '',
       details: [
         { label: 'Rank', text: '6/454 (Top 1.3%)' },
-        { label: 'Research Focus', text: 'Embodied AI, Vision-Language Models' },
+        { label: 'Research Focus', text: 'Embodied Intelligence, Vision-Language Models' },
         { label: 'Award', text: 'National Scholarship (2024), Outstanding Graduate of Sichuan Province (2025)' }
       ]
     },

@@ -58,7 +58,7 @@
         
         <section id="introduction" class="section" ref="introduction">
             <p>Hello! I am a master student at <a href="https://www.scse.uestc.edu.cn/" target="_blank" class="highlight-link">School of Computer Science and Engineering</a> at <a href="https://www.uestc.edu.cn/" target="_blank" class="highlight-link">University of Electronic Science and Technology of China (UESTC)</a>.</p>
-            <p>My research interests include <span class="highlight-red">Embodied AI</span> and <span class="highlight-red">Vision-Language Models</span>.</p>
+            <p>My research interests include <span class="highlight-red">Embodied Intelligence</span> and <span class="highlight-red">Vision-Language Models</span>.</p>
             <p>Feel free to reach out to me via email for any inquiries or collaborations!</p>
         </section>
 
@@ -375,7 +375,7 @@ const experiences = ref([
     description: '',
     details: [
       { label: 'Rank', text: '6/454 (Top 1.3%)' },
-      { label: 'Research Focus', text: 'Embodied AI, Vision-Language Models' },
+      { label: 'Research Focus', text: 'Embodied Intelligence, Vision-Language Models' },
       { label: 'Award', text: 'National Scholarship (2024), Outstanding Graduate of Sichuan Province (2025)' }
     ]
   },
